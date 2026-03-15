@@ -10,7 +10,7 @@ const trustItems = [
 
 const TrustSection = () => {
   return (
-    <section className="py-10 sm:py-14 md:py-20">
+    <section className="py-10 sm:py-14 md:py-20 border-t border-border/50">
       <div className="section-container">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

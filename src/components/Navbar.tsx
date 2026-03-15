@@ -12,18 +12,23 @@ const navItems = [
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
 
-  // Close mobile menu on route change
   useEffect(() => {
     setIsOpen(false);
   }, [location.pathname]);
 
-  // Prevent body scroll when menu is open
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
   }, [isOpen]);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 60);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const handleNavClick = (path: string) => {
     setIsOpen(false);
@@ -37,8 +42,17 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-card/90 backdrop-blur-md border-b border-border">
-      <div className="section-container flex items-center justify-between h-14 md:h-16 lg:h-20">
+    <nav
+      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+      style={{
+        background: scrolled || isOpen
+          ? "hsl(20 14% 6% / 0.97)"
+          : "linear-gradient(to bottom, hsl(20 14% 6% / 0.85), transparent)",
+        backdropFilter: scrolled || isOpen ? "blur(12px)" : "none",
+        borderBottom: scrolled || isOpen ? "1px solid hsl(20 8% 18%)" : "none",
+      }}
+    >
+      <div className="section-container flex items-center justify-between h-14 md:h-16 lg:h-18">
         <Link to="/" className="flex items-center gap-1.5 min-w-0">
           <span className="font-display text-lg sm:text-xl md:text-2xl font-bold text-foreground tracking-tight whitespace-nowrap">
             El Massa
@@ -55,7 +69,7 @@ const Navbar = () => {
               key={item.path}
               to={item.path.includes("#") ? "/" : item.path}
               onClick={() => handleNavClick(item.path)}
-              className="font-body text-sm font-medium text-foreground/70 hover:text-primary transition-colors whitespace-nowrap"
+              className="font-body text-sm font-medium text-foreground/70 hover:text-foreground transition-colors whitespace-nowrap"
             >
               {item.label}
             </Link>
@@ -87,7 +101,7 @@ const Navbar = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden bg-card border-b border-border overflow-hidden"
+            className="lg:hidden border-t border-border overflow-hidden"
           >
             <div className="section-container py-4 flex flex-col gap-1">
               {navItems.map((item) => (
