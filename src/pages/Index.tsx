@@ -1,10 +1,24 @@
 import { motion } from "framer-motion";
+import { useQuery } from "@tanstack/react-query";
 import PosterCard from "@/components/PosterCard";
 import TrustSection from "@/components/TrustSection";
-import { programs } from "@/data/programs";
+import { supabase } from "@/integrations/supabase/client";
 import heroBg from "@/assets/hero-bg.jpg";
 
 const Index = () => {
+  const { data: programs, isLoading } = useQuery({
+    queryKey: ["umrah-programs"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("umrah_programs")
+        .select("*")
+        .eq("is_active", true)
+        .order("sort_order", { ascending: true });
+      if (error) throw error;
+      return data;
+    },
+  });
+
   return (
     <main className="pt-16 md:pt-20">
       {/* Hero */}
@@ -59,15 +73,22 @@ const Index = () => {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-            {programs.map((program, i) => (
-              <PosterCard key={program.id} program={program} index={i} />
-            ))}
-          </div>
+          {isLoading ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+              {[...Array(6)].map((_, i) => (
+                <div key={i} className="poster-card bg-muted animate-pulse" />
+              ))}
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+              {programs?.map((program, i) => (
+                <PosterCard key={program.id} program={program} index={i} />
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
-      {/* Trust */}
       <TrustSection />
     </main>
   );
