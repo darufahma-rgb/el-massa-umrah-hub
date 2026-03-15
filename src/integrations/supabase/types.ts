@@ -14,7 +14,84 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      umrah_programs: {
+        Row: {
+          bonus_program: string | null
+          bulan_keberangkatan: string
+          catatan_program: string[] | null
+          created_at: string
+          durasi_hari: string
+          fasilitas_exclude: string[] | null
+          fasilitas_include: string[] | null
+          harga_detail: Json | null
+          harga_mulai: string
+          hotel_madinah: string
+          hotel_makkah: string
+          id: string
+          is_active: boolean
+          kota_keberangkatan: string
+          maskapai: string
+          nama_program: string
+          poster_image: string
+          rekening_pembayaran: Json | null
+          slug_url: string
+          sort_order: number
+          subtitle: string | null
+          updated_at: string
+          whatsapp_booking_link: string
+        }
+        Insert: {
+          bonus_program?: string | null
+          bulan_keberangkatan: string
+          catatan_program?: string[] | null
+          created_at?: string
+          durasi_hari: string
+          fasilitas_exclude?: string[] | null
+          fasilitas_include?: string[] | null
+          harga_detail?: Json | null
+          harga_mulai: string
+          hotel_madinah: string
+          hotel_makkah: string
+          id?: string
+          is_active?: boolean
+          kota_keberangkatan?: string
+          maskapai: string
+          nama_program: string
+          poster_image: string
+          rekening_pembayaran?: Json | null
+          slug_url: string
+          sort_order?: number
+          subtitle?: string | null
+          updated_at?: string
+          whatsapp_booking_link?: string
+        }
+        Update: {
+          bonus_program?: string | null
+          bulan_keberangkatan?: string
+          catatan_program?: string[] | null
+          created_at?: string
+          durasi_hari?: string
+          fasilitas_exclude?: string[] | null
+          fasilitas_include?: string[] | null
+          harga_detail?: Json | null
+          harga_mulai?: string
+          hotel_madinah?: string
+          hotel_makkah?: string
+          id?: string
+          is_active?: boolean
+          kota_keberangkatan?: string
+          maskapai?: string
+          nama_program?: string
+          poster_image?: string
+          rekening_pembayaran?: Json | null
+          slug_url?: string
+          sort_order?: number
+          subtitle?: string | null
+          updated_at?: string
+          whatsapp_booking_link?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
