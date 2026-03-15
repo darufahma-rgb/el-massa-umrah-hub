@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import PosterCard from "@/components/PosterCard";
 import TrustSection from "@/components/TrustSection";
-import { ChevronRight, CalendarDays, ArrowDown } from "lucide-react";
+import { ChevronRight, CalendarDays } from "lucide-react";
 import type { UmrahProgram } from "../../shared/schema";
 import { useRef } from "react";
 
@@ -123,16 +123,6 @@ const Index = () => {
   });
 
   const monthGroups = groupByMonth(programs ?? []);
-  const minPrice = programs && programs.length > 0
-    ? "Rp 29,9 JT"
-    : "—";
-
-  const stats = [
-    { label: "TOTAL PROGRAM", value: programs ? `${programs.length} Paket` : "—" },
-    { label: "DURASI", value: "10 – 12 Hari" },
-    { label: "KOTA KEBERANGKATAN", value: "2 Kota" },
-    { label: "HARGA MULAI", value: minPrice },
-  ];
 
   return (
     <main className="min-h-screen bg-background">
@@ -203,42 +193,23 @@ const Index = () => {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="flex items-center gap-3 mt-2"
           >
-            <a href="#programs" className="btn-booking gap-2">
-              <ArrowDown size={15} />
-              Lihat Semua Program
-            </a>
-            <Link
-              to="/kontak"
-              className="font-body text-sm font-medium text-muted-foreground hover:text-primary transition-colors underline underline-offset-4"
+            <a
+              href="https://wa.me/6281249476778?text=Assalamualaikum,%20saya%20ingin%20bertanya%20tentang%20paket%20umrah"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-booking gap-2"
             >
               Hubungi Kami
-            </Link>
+            </a>
+            <a
+              href="#programs"
+              className="font-body text-sm font-medium text-muted-foreground hover:text-primary transition-colors underline underline-offset-4"
+            >
+              Lihat Program
+            </a>
           </motion.div>
         </div>
       </section>
-
-      {/* ── Stats Bar ── */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.45, duration: 0.5 }}
-        className="border-y border-border bg-card/60 backdrop-blur-sm"
-      >
-        <div className="section-container">
-          <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-border">
-            {stats.map((stat) => (
-              <div key={stat.label} className="py-5 px-4 sm:px-6 md:px-8">
-                <p className="font-body text-[9px] sm:text-[10px] tracking-[0.18em] uppercase text-muted-foreground mb-1.5">
-                  {stat.label}
-                </p>
-                <p className="font-display text-base sm:text-lg md:text-xl font-bold text-foreground">
-                  {stat.value}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </motion.div>
 
       {/* ── Program Section Heading ── */}
       <div id="programs" className="pt-14 sm:pt-16 md:pt-20 pb-2">
