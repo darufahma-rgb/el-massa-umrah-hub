@@ -200,9 +200,9 @@
 
   .section-container {
     @apply mx-auto w-full;
-    padding-left: max(1rem, env(safe-area-inset-left));
-    padding-right: max(1rem, env(safe-area-inset-right));
-    max-width: 1400px;
+    padding-left: max(1.5rem, env(safe-area-inset-left));
+    padding-right: max(1.5rem, env(safe-area-inset-right));
+    max-width: 1280px;
   }
 
   @media (min-width: 640px) {
@@ -214,8 +214,8 @@
 
   @media (min-width: 1024px) {
     .section-container {
-      padding-left: 3rem;
-      padding-right: 3rem;
+      padding-left: 2.5rem;
+      padding-right: 2.5rem;
     }
   }
 

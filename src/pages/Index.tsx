@@ -4,9 +4,8 @@ import { Link } from "react-router-dom";
 import PosterCard from "@/components/PosterCard";
 import TrustSection from "@/components/TrustSection";
 import heroBg from "@/assets/hero-bg.jpg";
-import { Play, Info, ChevronRight, CalendarDays } from "lucide-react";
+import { Play, Info, CalendarDays } from "lucide-react";
 import type { UmrahProgram } from "../../shared/schema";
-import { useRef } from "react";
 
 const MONTH_ORDER: Record<string, number> = {
   Januari: 1, Februari: 2, Maret: 3, April: 4,
@@ -34,55 +33,21 @@ function groupByMonth(programs: UmrahProgram[]): { month: string; items: UmrahPr
 }
 
 const ProgramRow = ({ month, programs }: { month: string; programs: UmrahProgram[] }) => {
-  const scrollRef = useRef<HTMLDivElement>(null);
-
-  const scroll = (dir: "left" | "right") => {
-    const el = scrollRef.current;
-    if (!el) return;
-    el.scrollBy({ left: dir === "right" ? 320 : -320, behavior: "smooth" });
-  };
-
   return (
-    <div className="mb-8 sm:mb-10 md:mb-12">
+    <div className="mb-12 sm:mb-16 md:mb-20 lg:mb-24">
       <div className="section-container">
-        <div className="flex items-center justify-between mb-3 sm:mb-4">
-          <div className="flex items-center gap-2.5">
-            <CalendarDays size={18} className="text-primary shrink-0" />
-            <h2 className="font-display text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-foreground">
-              {month}
-            </h2>
-            <span className="hidden sm:inline text-xs font-body text-muted-foreground bg-muted px-2.5 py-0.5 rounded-full">
-              {programs.length} program
-            </span>
-          </div>
-          <div className="flex items-center gap-1">
-            <button
-              onClick={() => scroll("left")}
-              className="p-1.5 rounded-full bg-card hover:bg-muted border border-border text-foreground/60 hover:text-foreground transition-all"
-              aria-label="Scroll left"
-            >
-              <ChevronRight size={16} className="rotate-180" />
-            </button>
-            <button
-              onClick={() => scroll("right")}
-              className="p-1.5 rounded-full bg-card hover:bg-muted border border-border text-foreground/60 hover:text-foreground transition-all"
-              aria-label="Scroll right"
-            >
-              <ChevronRight size={16} />
-            </button>
-          </div>
+        <div className="flex items-center gap-3 mb-6 sm:mb-8">
+          <CalendarDays size={20} className="text-primary shrink-0" />
+          <h2 className="font-display text-2xl sm:text-3xl md:text-[2rem] lg:text-[2.25rem] font-bold text-foreground">
+            {month}
+          </h2>
+          <span className="text-xs font-body text-muted-foreground bg-muted px-3 py-1 rounded-full">
+            {programs.length} program
+          </span>
         </div>
-      </div>
-      <div className="section-container">
-        <div ref={scrollRef} className="row-scroll">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 md:gap-7">
           {programs.map((program, i) => (
-            <div
-              key={program.id}
-              className="flex-shrink-0"
-              style={{ width: "clamp(140px, 22vw, 210px)" }}
-            >
-              <PosterCard program={program} index={i} />
-            </div>
+            <PosterCard key={program.id} program={program} index={i} />
           ))}
         </div>
       </div>
@@ -91,18 +56,18 @@ const ProgramRow = ({ month, programs }: { month: string; programs: UmrahProgram
 };
 
 const SkeletonRow = () => (
-  <div className="mb-10">
+  <div className="mb-12 sm:mb-16 md:mb-20 lg:mb-24">
     <div className="section-container">
-      <div className="flex items-center gap-2 mb-4">
+      <div className="flex items-center gap-3 mb-6 sm:mb-8">
         <div className="w-5 h-5 bg-muted animate-pulse rounded" />
-        <div className="h-6 w-36 bg-muted animate-pulse rounded" />
+        <div className="h-8 w-48 bg-muted animate-pulse rounded" />
       </div>
-      <div className="flex gap-3">
-        {[...Array(5)].map((_, i) => (
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 md:gap-7">
+        {[...Array(3)].map((_, i) => (
           <div
             key={i}
-            className="flex-shrink-0 bg-muted animate-pulse rounded-xl"
-            style={{ width: "clamp(140px, 22vw, 210px)", aspectRatio: "2/3" }}
+            className="bg-muted animate-pulse rounded-xl"
+            style={{ aspectRatio: "2/3" }}
           />
         ))}
       </div>
@@ -146,7 +111,7 @@ const Index = () => {
                 El Massa Tour & Travel
               </span>
 
-              <h1 className="font-display text-[2rem] leading-[1.1] sm:text-5xl md:text-6xl lg:text-7xl font-bold text-primary-foreground mb-3 sm:mb-4">
+              <h1 className="font-display text-[2.25rem] leading-[1.1] sm:text-[2.75rem] md:text-5xl lg:text-[3.25rem] font-bold text-primary-foreground mb-3 sm:mb-4">
                 {featured?.nama_program ?? (
                   <>Temukan Program<br />Umrah <span className="text-primary italic">Pilihan Anda</span></>
                 )}
@@ -205,7 +170,7 @@ const Index = () => {
       </section>
 
       {/* ── Program Rows by Month ── */}
-      <div id="programs" className="pt-8 sm:pt-10 md:pt-12 pb-4">
+      <div id="programs" className="pt-12 sm:pt-16 md:pt-20 pb-8 sm:pb-12 md:pb-16">
         {isLoading ? (
           <>
             <SkeletonRow />
