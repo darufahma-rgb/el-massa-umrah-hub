@@ -91,8 +91,8 @@ const ProgramDetail = () => {
     );
   }
 
-  const prices = (program.harga_detail as PriceItem[] | null) || [];
-  const bankAccounts = (program.rekening_pembayaran as BankAccount[] | null) || [];
+  const prices = (program.harga_detail as unknown as PriceItem[] | null) || [];
+  const bankAccounts = (program.rekening_pembayaran as unknown as BankAccount[] | null) || [];
   const waLink = program.whatsapp_booking_link;
 
   return (
