@@ -5,7 +5,57 @@
 @tailwind utilities;
 
 @layer base {
+  /* ── Light theme (default) ── */
   :root {
+    --background: 30 33% 93%;
+    --foreground: 18 56% 30%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 18 56% 30%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 18 56% 30%;
+
+    --primary: 340 75% 62%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 30 33% 93%;
+    --secondary-foreground: 18 56% 30%;
+
+    --muted: 30 20% 88%;
+    --muted-foreground: 18 30% 50%;
+
+    --accent: 30 50% 90%;
+    --accent-foreground: 18 56% 30%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 30 20% 85%;
+    --input: 30 20% 85%;
+    --ring: 340 75% 62%;
+
+    --radius: 1rem;
+
+    --shadow-soft: 0 4px 30px -4px hsl(18 56% 30% / 0.08);
+    --shadow-card: 0 8px 40px -8px hsl(18 56% 30% / 0.12);
+    --shadow-elevated: 0 20px 60px -12px hsl(18 56% 30% / 0.18);
+
+    --font-display: 'Playfair Display', serif;
+    --font-body: 'Poppins', sans-serif;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 18 56% 30%;
+    --sidebar-primary: 340 75% 62%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 30 33% 93%;
+    --sidebar-accent-foreground: 18 56% 30%;
+    --sidebar-border: 30 20% 85%;
+    --sidebar-ring: 340 75% 62%;
+  }
+
+  /* ── Dark theme ── */
+  .dark {
     --background: 20 14% 6%;
     --foreground: 30 15% 92%;
 
@@ -34,14 +84,9 @@
     --input: 20 8% 18%;
     --ring: 340 75% 62%;
 
-    --radius: 1rem;
-
     --shadow-soft: 0 4px 30px -4px rgba(0,0,0,0.5);
     --shadow-card: 0 8px 40px -8px rgba(0,0,0,0.6);
     --shadow-elevated: 0 20px 60px -12px rgba(0,0,0,0.7);
-
-    --font-display: 'Playfair Display', serif;
-    --font-body: 'Poppins', sans-serif;
 
     --sidebar-background: 20 14% 8%;
     --sidebar-foreground: 30 15% 80%;
@@ -69,6 +114,7 @@
     @apply bg-background text-foreground;
     font-family: var(--font-body);
     overflow-x: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -106,8 +152,18 @@
   .poster-gradient {
     background: linear-gradient(
       to top,
-      hsl(20 14% 6% / 0.95) 0%,
+      hsl(20 14% 6% / 0.96) 0%,
       hsl(20 14% 6% / 0.5) 40%,
+      transparent 70%
+    );
+  }
+
+  /* Light mode poster gradient override */
+  :root:not(.dark) .poster-gradient {
+    background: linear-gradient(
+      to top,
+      hsl(18 56% 20% / 0.92) 0%,
+      hsl(18 56% 20% / 0.45) 40%,
       transparent 70%
     );
   }
@@ -123,6 +179,21 @@
     linear-gradient(
       to top,
       hsl(20 14% 6%) 0%,
+      transparent 30%
+    );
+  }
+
+  :root:not(.dark) .hero-gradient {
+    background: linear-gradient(
+      to right,
+      hsl(18 56% 15% / 0.96) 0%,
+      hsl(18 56% 15% / 0.82) 40%,
+      hsl(18 56% 15% / 0.25) 70%,
+      transparent 100%
+    ),
+    linear-gradient(
+      to top,
+      hsl(18 56% 15%) 0%,
       transparent 30%
     );
   }
@@ -174,12 +245,12 @@
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center gap-2 rounded-xl font-semibold transition-all;
+    @apply inline-flex items-center justify-center gap-2 rounded-xl font-semibold transition-all border;
     padding: 0.75rem 1.5rem;
     font-size: 0.875rem;
-    background: hsl(30 15% 92% / 0.15);
+    background: hsl(var(--foreground) / 0.12);
     color: hsl(var(--foreground));
-    border: 1px solid hsl(30 15% 92% / 0.25);
+    border-color: hsl(var(--foreground) / 0.22);
     backdrop-filter: blur(8px);
     font-family: var(--font-body);
   }
@@ -192,16 +263,16 @@
   }
 
   .btn-secondary:hover {
-    background: hsl(30 15% 92% / 0.25);
+    background: hsl(var(--foreground) / 0.22);
     transform: translateY(-2px);
   }
 
   .glass-card {
     @apply rounded-xl;
     padding: 1rem;
-    background: hsl(20 12% 12% / 0.9);
+    background: hsl(var(--card) / 0.85);
     backdrop-filter: blur(12px);
-    border: 1px solid hsl(30 15% 92% / 0.06);
+    border: 1px solid hsl(var(--border));
     box-shadow: var(--shadow-soft);
   }
 
@@ -214,8 +285,8 @@
   .trust-badge {
     @apply flex flex-col items-center gap-1.5 rounded-xl text-center;
     padding: 1.25rem 0.75rem;
-    background: hsl(20 12% 10% / 0.8);
-    border: 1px solid hsl(30 15% 92% / 0.06);
+    background: hsl(var(--card) / 0.85);
+    border: 1px solid hsl(var(--border));
     box-shadow: var(--shadow-soft);
   }
 

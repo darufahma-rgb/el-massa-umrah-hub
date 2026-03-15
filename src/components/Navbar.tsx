@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Sun, Moon } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTheme } from "@/components/ThemeProvider";
 
 const navItems = [
   { label: "Home", path: "/" },
@@ -14,6 +15,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+  const { theme, toggle } = useTheme();
 
   useEffect(() => {
     setIsOpen(false);
@@ -41,18 +43,26 @@ const Navbar = () => {
     }
   };
 
+  const isHeroPage = location.pathname === "/";
+
+  const navBg = scrolled || isOpen || !isHeroPage
+    ? "hsl(var(--card) / 0.97)"
+    : "linear-gradient(to bottom, hsl(var(--background) / 0.85), transparent)";
+
+  const navBorderColor = scrolled || isOpen || !isHeroPage
+    ? "hsl(var(--border))"
+    : "transparent";
+
   return (
     <nav
       className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
       style={{
-        background: scrolled || isOpen
-          ? "hsl(20 14% 6% / 0.97)"
-          : "linear-gradient(to bottom, hsl(20 14% 6% / 0.85), transparent)",
-        backdropFilter: scrolled || isOpen ? "blur(12px)" : "none",
-        borderBottom: scrolled || isOpen ? "1px solid hsl(20 8% 18%)" : "none",
+        background: navBg,
+        backdropFilter: scrolled || isOpen || !isHeroPage ? "blur(14px)" : "none",
+        borderBottom: `1px solid ${navBorderColor}`,
       }}
     >
-      <div className="section-container flex items-center justify-between h-14 md:h-16 lg:h-18">
+      <div className="section-container flex items-center justify-between h-14 md:h-16">
         <Link to="/" className="flex items-center gap-1.5 min-w-0">
           <span className="font-display text-lg sm:text-xl md:text-2xl font-bold text-foreground tracking-tight whitespace-nowrap">
             El Massa
@@ -74,6 +84,17 @@ const Navbar = () => {
               {item.label}
             </Link>
           ))}
+
+          {/* Theme toggle */}
+          <button
+            onClick={toggle}
+            data-testid="button-theme-toggle"
+            aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+            className="p-2 rounded-xl bg-muted hover:bg-accent text-foreground/70 hover:text-foreground transition-all"
+          >
+            {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+          </button>
+
           <a
             href="https://wa.me/6281234567890?text=Assalamualaikum,%20saya%20ingin%20booking%20program%20umrah"
             target="_blank"
@@ -84,14 +105,24 @@ const Navbar = () => {
           </a>
         </div>
 
-        {/* Mobile Toggle */}
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="lg:hidden p-2 -mr-2 text-foreground"
-          aria-label="Toggle menu"
-        >
-          {isOpen ? <X size={22} /> : <Menu size={22} />}
-        </button>
+        {/* Mobile right side */}
+        <div className="flex lg:hidden items-center gap-2">
+          <button
+            onClick={toggle}
+            data-testid="button-theme-toggle-mobile"
+            aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+            className="p-2 rounded-xl bg-muted hover:bg-accent text-foreground/70 hover:text-foreground transition-all"
+          >
+            {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+          </button>
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="p-2 -mr-2 text-foreground"
+            aria-label="Toggle menu"
+          >
+            {isOpen ? <X size={22} /> : <Menu size={22} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu */}
