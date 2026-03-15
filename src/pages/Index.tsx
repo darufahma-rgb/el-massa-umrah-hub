@@ -3,8 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import PosterCard from "@/components/PosterCard";
 import TrustSection from "@/components/TrustSection";
-import heroBg from "@/assets/hero-bg.jpg";
-import { Play, Info, ChevronRight, CalendarDays } from "lucide-react";
+import { ChevronRight, CalendarDays, ArrowDown } from "lucide-react";
 import type { UmrahProgram } from "../../shared/schema";
 import { useRef } from "react";
 
@@ -43,32 +42,35 @@ const ProgramRow = ({ month, programs }: { month: string; programs: UmrahProgram
   };
 
   return (
-    <div className="mb-8 sm:mb-10 md:mb-12">
+    <div className="mb-10 sm:mb-12 md:mb-14">
       <div className="section-container">
-        <div className="flex items-center justify-between mb-3 sm:mb-4">
-          <div className="flex items-center gap-2.5">
-            <CalendarDays size={18} className="text-primary shrink-0" />
-            <h2 className="font-display text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-foreground">
-              {month}
-            </h2>
-            <span className="hidden sm:inline text-xs font-body text-muted-foreground bg-muted px-2.5 py-0.5 rounded-full">
-              {programs.length} program
-            </span>
+        <div className="flex items-center justify-between mb-4 sm:mb-5">
+          <div className="flex items-center gap-3">
+            <div className="w-1 h-6 rounded-full bg-primary" />
+            <div className="flex items-center gap-2.5">
+              <CalendarDays size={15} className="text-primary/70" />
+              <h2 className="font-display text-lg sm:text-xl md:text-2xl font-bold text-foreground tracking-tight">
+                {month}
+              </h2>
+              <span className="hidden sm:inline text-[10px] font-body text-muted-foreground bg-muted px-2.5 py-0.5 rounded-full border border-border/50">
+                {programs.length} program
+              </span>
+            </div>
           </div>
           <div className="flex items-center gap-1">
             <button
               onClick={() => scroll("left")}
-              className="p-1.5 rounded-full bg-card hover:bg-muted border border-border text-foreground/60 hover:text-foreground transition-all"
+              className="p-1.5 rounded-full bg-card hover:bg-muted border border-border text-muted-foreground hover:text-foreground transition-all"
               aria-label="Scroll left"
             >
-              <ChevronRight size={16} className="rotate-180" />
+              <ChevronRight size={14} className="rotate-180" />
             </button>
             <button
               onClick={() => scroll("right")}
-              className="p-1.5 rounded-full bg-card hover:bg-muted border border-border text-foreground/60 hover:text-foreground transition-all"
+              className="p-1.5 rounded-full bg-card hover:bg-muted border border-border text-muted-foreground hover:text-foreground transition-all"
               aria-label="Scroll right"
             >
-              <ChevronRight size={16} />
+              <ChevronRight size={14} />
             </button>
           </div>
         </div>
@@ -91,17 +93,17 @@ const ProgramRow = ({ month, programs }: { month: string; programs: UmrahProgram
 };
 
 const SkeletonRow = () => (
-  <div className="mb-10">
+  <div className="mb-12">
     <div className="section-container">
-      <div className="flex items-center gap-2 mb-4">
-        <div className="w-5 h-5 bg-muted animate-pulse rounded" />
-        <div className="h-6 w-36 bg-muted animate-pulse rounded" />
+      <div className="flex items-center gap-3 mb-4">
+        <div className="w-1 h-6 bg-muted rounded-full" />
+        <div className="h-6 w-32 bg-muted animate-pulse rounded" />
       </div>
       <div className="flex gap-3">
         {[...Array(5)].map((_, i) => (
           <div
             key={i}
-            className="flex-shrink-0 bg-muted animate-pulse rounded-xl"
+            className="flex-shrink-0 bg-muted animate-pulse rounded-2xl"
             style={{ width: "clamp(140px, 22vw, 210px)", aspectRatio: "2/3" }}
           />
         ))}
@@ -120,95 +122,152 @@ const Index = () => {
     },
   });
 
-  const featured = programs?.[0];
   const monthGroups = groupByMonth(programs ?? []);
+  const minPrice = programs && programs.length > 0
+    ? "Rp 29,9 JT"
+    : "—";
+
+  const stats = [
+    { label: "TOTAL PROGRAM", value: programs ? `${programs.length} Paket` : "—" },
+    { label: "DURASI", value: "10 – 12 Hari" },
+    { label: "KOTA KEBERANGKATAN", value: "2 Kota" },
+    { label: "HARGA MULAI", value: minPrice },
+  ];
 
   return (
     <main className="min-h-screen bg-background">
+
       {/* ── Hero ── */}
-      <section className="relative h-[80vh] sm:h-[85vh] md:h-screen min-h-[520px] overflow-hidden">
-        <img
-          src={featured?.poster_image ?? heroBg}
-          alt={featured?.nama_program ?? "El Massa"}
-          className="absolute inset-0 w-full h-full object-cover object-center scale-105"
+      <section className="relative min-h-[80vh] sm:min-h-[85vh] flex flex-col items-center justify-center text-center overflow-hidden px-4 pt-20 pb-16">
+
+        {/* Gradient glow blob */}
+        <div
+          className="absolute top-[-5%] left-1/2 -translate-x-1/2 pointer-events-none"
+          style={{
+            width: "min(800px, 140vw)",
+            height: "min(700px, 130vw)",
+            background: "radial-gradient(ellipse at center, hsl(328 76% 65% / 0.28) 0%, hsl(328 76% 55% / 0.12) 45%, transparent 70%)",
+            filter: "blur(40px)",
+          }}
         />
-        <div className="hero-gradient absolute inset-0" />
+        <div
+          className="absolute bottom-[-10%] right-[5%] pointer-events-none"
+          style={{
+            width: "min(400px, 70vw)",
+            height: "min(400px, 70vw)",
+            background: "radial-gradient(ellipse at center, hsl(280 60% 60% / 0.10) 0%, transparent 65%)",
+            filter: "blur(50px)",
+          }}
+        />
 
-        <div className="relative h-full flex flex-col justify-end pb-16 sm:pb-20 md:pb-24">
-          <div className="section-container">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7 }}
-              className="max-w-xl lg:max-w-2xl"
+        <div className="relative z-10 flex flex-col items-center gap-5 sm:gap-6 max-w-3xl mx-auto">
+
+          {/* Eyebrow label */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <span className="pill-label">
+              <span className="w-1.5 h-1.5 rounded-full bg-primary inline-block" />
+              El Massa Tour & Travel 2026
+            </span>
+          </motion.div>
+
+          {/* Main title */}
+          <motion.h1
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="font-display font-extrabold text-foreground tracking-tight leading-[0.88]"
+            style={{ fontSize: "clamp(2.6rem, 10vw, 6.5rem)" }}
+          >
+            Paket Umrah<br />
+            <span className="text-primary">El Massa</span>
+          </motion.h1>
+
+          {/* Subtitle */}
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="font-body text-sm sm:text-base text-muted-foreground max-w-xs sm:max-w-sm leading-relaxed"
+          >
+            Temukan paket umrah pilihan dengan pelayanan terbaik, hotel nyaman, dan harga terjangkau.
+          </motion.p>
+
+          {/* CTA */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="flex items-center gap-3 mt-2"
+          >
+            <a href="#programs" className="btn-booking gap-2">
+              <ArrowDown size={15} />
+              Lihat Semua Program
+            </a>
+            <Link
+              to="/kontak"
+              className="font-body text-sm font-medium text-muted-foreground hover:text-primary transition-colors underline underline-offset-4"
             >
-              <span className="inline-block px-3 py-1 rounded-full text-[10px] sm:text-xs font-body font-semibold bg-primary/25 text-primary-foreground border border-primary/35 tracking-wider uppercase mb-3 sm:mb-4">
-                El Massa Tour & Travel
-              </span>
-
-              <h1 className="font-display text-[2rem] leading-[1.1] sm:text-5xl md:text-6xl lg:text-7xl font-bold text-primary-foreground mb-3 sm:mb-4">
-                {featured?.nama_program ?? (
-                  <>Temukan Program<br />Umrah <span className="text-primary italic">Pilihan Anda</span></>
-                )}
-              </h1>
-
-              {featured && (
-                <p className="font-body text-primary-foreground/75 text-sm sm:text-base max-w-md mb-2">
-                  {featured.subtitle}
-                </p>
-              )}
-
-              <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-primary-foreground/55 text-xs font-body mb-5 sm:mb-7">
-                {featured ? (
-                  <>
-                    <span className="flex items-center gap-1">
-                      <CalendarDays size={12} /> {featured.bulan_keberangkatan}
-                    </span>
-                    <span>•</span>
-                    <span>{featured.durasi_hari}</span>
-                    <span>•</span>
-                    <span>{featured.kota_keberangkatan}</span>
-                    <span>•</span>
-                    <span className="text-primary font-semibold text-sm">{featured.harga_mulai}</span>
-                  </>
-                ) : (
-                  <span>Jelajahi berbagai pilihan paket umrah premium dengan pelayanan terbaik.</span>
-                )}
-              </div>
-
-              <div className="flex flex-wrap items-center gap-3">
-                {featured ? (
-                  <>
-                    <Link to={`/program/${featured.slug_url}`} className="btn-booking gap-2">
-                      <Play size={15} fill="currentColor" />
-                      Lihat Detail
-                    </Link>
-                    <a
-                      href={featured.whatsapp_booking_link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn-secondary gap-2"
-                    >
-                      <Info size={15} />
-                      Booking Sekarang
-                    </a>
-                  </>
-                ) : (
-                  <a href="#programs" className="btn-booking gap-2">
-                    Jelajahi Program
-                  </a>
-                )}
-              </div>
-            </motion.div>
-          </div>
+              Hubungi Kami
+            </Link>
+          </motion.div>
         </div>
       </section>
 
-      {/* ── Program Rows by Month ── */}
-      <div id="programs" className="pt-8 sm:pt-10 md:pt-12 pb-4">
+      {/* ── Stats Bar ── */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.45, duration: 0.5 }}
+        className="border-y border-border bg-card/60 backdrop-blur-sm"
+      >
+        <div className="section-container">
+          <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-border">
+            {stats.map((stat) => (
+              <div key={stat.label} className="py-5 px-4 sm:px-6 md:px-8">
+                <p className="font-body text-[9px] sm:text-[10px] tracking-[0.18em] uppercase text-muted-foreground mb-1.5">
+                  {stat.label}
+                </p>
+                <p className="font-display text-base sm:text-lg md:text-xl font-bold text-foreground">
+                  {stat.value}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </motion.div>
+
+      {/* ── Program Section Heading ── */}
+      <div id="programs" className="pt-14 sm:pt-16 md:pt-20 pb-2">
+        <div className="section-container mb-10 sm:mb-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="flex flex-col items-start gap-3"
+          >
+            <span className="pill-label">
+              <span className="w-1.5 h-1.5 rounded-full bg-primary inline-block" />
+              Program Tersedia
+            </span>
+            <h2
+              className="font-display font-extrabold text-foreground tracking-tight leading-tight"
+              style={{ fontSize: "clamp(1.75rem, 5vw, 3rem)" }}
+            >
+              Pilih Program Umrah Anda
+            </h2>
+            <p className="font-body text-sm text-muted-foreground max-w-sm">
+              Tersedia berbagai pilihan paket dengan keberangkatan dari Pangkal Pinang dan Jakarta.
+            </p>
+          </motion.div>
+        </div>
+
+        {/* Program rows */}
         {isLoading ? (
           <>
-            <SkeletonRow />
             <SkeletonRow />
             <SkeletonRow />
           </>

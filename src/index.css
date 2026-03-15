@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700&family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,8 +6,6 @@
 
 @layer base {
   :root {
-    /* ── El Massa Brand – Light mode only ── */
-    /* Background: very light warm pink (like the brochure's soft backdrop) */
     --background: 340 50% 96%;
     --foreground: 330 30% 14%;
 
@@ -17,7 +15,6 @@
     --popover: 0 0% 100%;
     --popover-foreground: 330 30% 14%;
 
-    /* Primary: El Massa hot pink/magenta from brochure */
     --primary: 328 76% 50%;
     --primary-foreground: 0 0% 100%;
 
@@ -37,14 +34,14 @@
     --input: 340 25% 87%;
     --ring: 328 76% 50%;
 
-    --radius: 1rem;
+    --radius: 0.875rem;
 
-    --shadow-soft: 0 4px 30px -4px hsl(328 76% 50% / 0.08);
-    --shadow-card: 0 8px 40px -8px hsl(328 76% 50% / 0.12);
+    --shadow-soft: 0 4px 30px -4px hsl(328 76% 50% / 0.07);
+    --shadow-card: 0 8px 40px -8px hsl(328 76% 50% / 0.11);
     --shadow-elevated: 0 20px 60px -12px hsl(328 76% 50% / 0.20);
 
-    --font-display: 'Playfair Display', serif;
-    --font-body: 'Poppins', sans-serif;
+    --font-display: 'Syne', sans-serif;
+    --font-body: 'Inter', sans-serif;
 
     --sidebar-background: 340 50% 96%;
     --sidebar-foreground: 330 30% 14%;
@@ -88,14 +85,14 @@
 
 @layer components {
   .poster-card {
-    @apply relative overflow-hidden rounded-xl cursor-pointer flex-shrink-0;
+    @apply relative overflow-hidden rounded-2xl cursor-pointer flex-shrink-0;
     box-shadow: var(--shadow-card);
     transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     aspect-ratio: 2 / 3;
   }
 
   .poster-card:hover {
-    transform: scale(1.06) translateY(-4px);
+    transform: scale(1.05) translateY(-4px);
     box-shadow: var(--shadow-elevated);
     z-index: 10;
   }
@@ -118,9 +115,9 @@
   .hero-gradient {
     background: linear-gradient(
       to right,
-      hsl(328 60% 12% / 0.96) 0%,
-      hsl(328 60% 12% / 0.82) 38%,
-      hsl(328 60% 12% / 0.22) 68%,
+      hsl(328 60% 12% / 0.95) 0%,
+      hsl(328 60% 12% / 0.78) 38%,
+      hsl(328 60% 12% / 0.18) 68%,
       transparent 100%
     ),
     linear-gradient(
@@ -152,18 +149,19 @@
   }
 
   .btn-booking {
-    @apply inline-flex items-center justify-center gap-2 rounded-xl font-semibold text-white transition-all;
-    padding: 0.75rem 1.5rem;
+    @apply inline-flex items-center justify-center gap-2 rounded-full font-semibold text-white transition-all;
+    padding: 0.75rem 1.75rem;
     font-size: 0.875rem;
+    font-family: var(--font-body);
     background: linear-gradient(135deg, hsl(328 76% 50%), hsl(328 85% 44%));
     box-shadow: 0 4px 20px -4px hsl(328 76% 50% / 0.45);
-    font-family: var(--font-body);
+    letter-spacing: 0.01em;
   }
 
   @media (min-width: 768px) {
     .btn-booking {
-      padding: 0.875rem 2rem;
-      font-size: 1rem;
+      padding: 0.875rem 2.25rem;
+      font-size: 0.9375rem;
     }
   }
 
@@ -177,20 +175,21 @@
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center gap-2 rounded-xl font-semibold transition-all border;
-    padding: 0.75rem 1.5rem;
+    @apply inline-flex items-center justify-center gap-2 rounded-full font-semibold transition-all border;
+    padding: 0.75rem 1.75rem;
     font-size: 0.875rem;
     background: hsl(0 0% 100% / 0.18);
     color: hsl(0 0% 100%);
     border-color: hsl(0 0% 100% / 0.35);
     backdrop-filter: blur(8px);
     font-family: var(--font-body);
+    letter-spacing: 0.01em;
   }
 
   @media (min-width: 768px) {
     .btn-secondary {
-      padding: 0.875rem 2rem;
-      font-size: 1rem;
+      padding: 0.875rem 2.25rem;
+      font-size: 0.9375rem;
     }
   }
 
@@ -200,7 +199,7 @@
   }
 
   .glass-card {
-    @apply rounded-xl;
+    @apply rounded-2xl;
     padding: 1rem;
     background: hsl(var(--card));
     border: 1px solid hsl(var(--border));
@@ -214,7 +213,7 @@
   }
 
   .trust-badge {
-    @apply flex flex-col items-center gap-1.5 rounded-xl text-center;
+    @apply flex flex-col items-center gap-1.5 rounded-2xl text-center;
     padding: 1.25rem 0.75rem;
     background: hsl(var(--card));
     border: 1px solid hsl(var(--border));
@@ -251,5 +250,14 @@
     padding: 0.75rem 1rem;
     padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
     background: linear-gradient(to top, hsl(var(--background)), hsl(var(--background) / 0.95), transparent);
+  }
+
+  /* Eyebrow pill label (like "DEV & DESIGN INTERNSHIP" in reference) */
+  .pill-label {
+    @apply inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-border text-muted-foreground;
+    font-family: var(--font-body);
+    font-size: 0.6875rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
   }
 }
