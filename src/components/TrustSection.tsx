@@ -10,22 +10,22 @@ const trustItems = [
 
 const TrustSection = () => {
   return (
-    <section className="py-16 md:py-20">
+    <section className="py-10 sm:py-14 md:py-20">
       <div className="section-container">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-10"
+          className="text-center mb-6 sm:mb-8 md:mb-10"
         >
-          <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-3">
+          <h2 className="font-display text-xl sm:text-2xl md:text-3xl font-bold text-foreground mb-2 sm:mb-3">
             Dipercaya Ribuan Jamaah
           </h2>
-          <p className="font-body text-muted-foreground max-w-lg mx-auto">
+          <p className="font-body text-xs sm:text-sm text-muted-foreground max-w-md lg:max-w-lg mx-auto">
             El Massa Tour & Travel berkomitmen menghadirkan perjalanan umrah yang aman, nyaman, dan penuh keberkahan.
           </p>
         </motion.div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-4 md:gap-6">
           {trustItems.map((item, i) => (
             <motion.div
               key={item.title}
@@ -35,9 +35,9 @@ const TrustSection = () => {
               transition={{ delay: i * 0.1 }}
               className="trust-badge"
             >
-              <item.icon size={32} className="text-primary" />
-              <h4 className="font-display text-sm md:text-base font-semibold text-foreground">{item.title}</h4>
-              <p className="font-body text-xs text-muted-foreground">{item.desc}</p>
+              <item.icon size={24} className="text-primary sm:w-7 sm:h-7 md:w-8 md:h-8" />
+              <h4 className="font-display text-[11px] sm:text-sm md:text-base font-semibold text-foreground leading-tight">{item.title}</h4>
+              <p className="font-body text-[10px] sm:text-xs text-muted-foreground">{item.desc}</p>
             </motion.div>
           ))}
         </div>

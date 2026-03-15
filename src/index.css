@@ -57,15 +57,29 @@
 @layer base {
   * {
     @apply border-border;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
   }
 
   body {
     @apply bg-background text-foreground;
     font-family: var(--font-body);
+    overflow-x: hidden;
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
   }
 }
 
@@ -74,7 +88,13 @@
     @apply relative overflow-hidden rounded-2xl cursor-pointer;
     box-shadow: var(--shadow-card);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    aspect-ratio: 2 / 3;
+    aspect-ratio: 3 / 4;
+  }
+
+  @media (min-width: 640px) {
+    .poster-card {
+      aspect-ratio: 2 / 3;
+    }
   }
 
   .poster-card:hover {
@@ -82,24 +102,56 @@
     box-shadow: var(--shadow-elevated);
   }
 
+  @media (max-width: 639px) {
+    .poster-card:hover {
+      transform: none;
+    }
+  }
+
   .poster-gradient {
     background: linear-gradient(
       to top,
-      hsl(18 56% 30% / 0.85) 0%,
-      hsl(18 56% 30% / 0.4) 40%,
-      transparent 70%
+      hsl(18 56% 30% / 0.9) 0%,
+      hsl(18 56% 30% / 0.5) 35%,
+      transparent 65%
     );
   }
 
   .section-container {
-    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+    @apply mx-auto w-full;
+    padding-left: max(1rem, env(safe-area-inset-left));
+    padding-right: max(1rem, env(safe-area-inset-right));
+    max-width: 1280px;
+  }
+
+  @media (min-width: 640px) {
+    .section-container {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .section-container {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
   }
 
   .btn-booking {
-    @apply inline-flex items-center justify-center gap-2 px-8 py-4 rounded-2xl font-semibold text-primary-foreground transition-all;
+    @apply inline-flex items-center justify-center gap-2 rounded-2xl font-semibold text-primary-foreground transition-all;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.875rem;
     background: linear-gradient(135deg, hsl(var(--primary)), hsl(340 85% 55%));
     box-shadow: 0 4px 20px -4px hsl(var(--primary) / 0.5);
     font-family: var(--font-body);
+  }
+
+  @media (min-width: 768px) {
+    .btn-booking {
+      padding: 1rem 2rem;
+      font-size: 1rem;
+    }
   }
 
   .btn-booking:hover {
@@ -107,26 +159,48 @@
     box-shadow: 0 8px 30px -4px hsl(var(--primary) / 0.6);
   }
 
+  .btn-booking:active {
+    transform: translateY(0);
+  }
+
   .glass-card {
-    @apply rounded-2xl p-6;
+    @apply rounded-2xl;
+    padding: 1rem;
     background: hsl(0 0% 100% / 0.8);
     backdrop-filter: blur(12px);
     box-shadow: var(--shadow-soft);
   }
 
+  @media (min-width: 768px) {
+    .glass-card {
+      padding: 1.5rem;
+    }
+  }
+
   .trust-badge {
-    @apply flex flex-col items-center gap-2 p-4 rounded-2xl text-center;
+    @apply flex flex-col items-center gap-1.5 rounded-2xl text-center;
+    padding: 0.75rem;
     background: hsl(0 0% 100% / 0.7);
     box-shadow: var(--shadow-soft);
   }
 
+  @media (min-width: 768px) {
+    .trust-badge {
+      gap: 0.5rem;
+      padding: 1rem;
+    }
+  }
+
   .facility-icon {
-    @apply flex flex-col items-center gap-2 p-4 rounded-xl text-center text-sm;
+    @apply flex flex-col items-center gap-2 rounded-xl text-center text-sm;
+    padding: 0.75rem;
     color: hsl(var(--foreground));
   }
 
   .sticky-cta {
-    @apply fixed bottom-0 left-0 right-0 p-4 z-50;
+    @apply fixed bottom-0 left-0 right-0 z-40;
+    padding: 0.75rem 1rem;
+    padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
     background: linear-gradient(to top, hsl(var(--background)), hsl(var(--background) / 0.95), transparent);
   }
 }
