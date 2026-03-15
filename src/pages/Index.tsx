@@ -138,7 +138,7 @@ const Index = () => {
     <main className="min-h-screen bg-background">
 
       {/* ── Hero ── */}
-      <section className="relative min-h-[80vh] sm:min-h-[85vh] flex flex-col items-center justify-center text-center overflow-hidden px-4 pt-20 pb-16">
+      <section className="relative min-h-[80vh] sm:min-h-[85vh] flex flex-col items-start justify-center text-left overflow-hidden pt-20 pb-16">
 
         {/* Gradient glow blob */}
         <div
@@ -160,7 +160,7 @@ const Index = () => {
           }}
         />
 
-        <div className="relative z-10 flex flex-col items-center gap-5 sm:gap-6 max-w-3xl mx-auto">
+        <div className="relative z-10 flex flex-col items-start gap-5 sm:gap-6 max-w-3xl section-container" style={{ paddingTop: 0, paddingBottom: 0 }}>
 
           {/* Eyebrow label */}
           <motion.div

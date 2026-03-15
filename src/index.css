@@ -1,4 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@font-face {
+  font-family: 'Hubhead';
+  src: url('/fonts/Hubhead.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
 
 @tailwind base;
 @tailwind components;
@@ -40,7 +48,7 @@
     --shadow-card: 0 8px 40px -8px hsl(328 76% 50% / 0.11);
     --shadow-elevated: 0 20px 60px -12px hsl(328 76% 50% / 0.20);
 
-    --font-display: 'Syne', sans-serif;
+    --font-display: 'Hubhead', sans-serif;
     --font-body: 'Inter', sans-serif;
 
     --sidebar-background: 340 50% 96%;
