@@ -1,98 +1,124 @@
 import { motion } from "framer-motion";
-import { Shield, Award, Plane, Users } from "lucide-react";
+import { Shield, Award, Plane, Users, CheckCircle2 } from "lucide-react";
 
 const trustItems = [
   {
     icon: Shield,
     title: "Izin Resmi Kemenag",
-    desc: "Terdaftar & berizin resmi di Kementerian Agama RI sebagai penyelenggara umrah.",
+    desc: "Terdaftar resmi di Kementerian Agama RI",
+    stat: "100%",
+    statLabel: "Legal",
+    color: "text-emerald-600",
+    bg: "bg-emerald-50",
+    border: "border-emerald-200",
   },
   {
     icon: Award,
     title: "10+ Tahun Pengalaman",
-    desc: "Lebih dari satu dekade dipercaya ribuan jamaah dalam setiap perjalanan ibadah.",
+    desc: "Lebih dari satu dekade melayani jamaah",
+    stat: "10+",
+    statLabel: "Tahun",
+    color: "text-amber-600",
+    bg: "bg-amber-50",
+    border: "border-amber-200",
   },
   {
     icon: Plane,
-    title: "Partner Maskapai Resmi",
-    desc: "Bekerja sama langsung dengan Saudia Airlines & Garuda Indonesia.",
+    title: "Maskapai Resmi",
+    desc: "Saudia Airlines & Garuda Indonesia",
+    stat: "2",
+    statLabel: "Maskapai",
+    color: "text-sky-600",
+    bg: "bg-sky-50",
+    border: "border-sky-200",
   },
   {
     icon: Users,
     title: "5.000+ Jamaah",
-    desc: "Ribuan jamaah telah merasakan kenyamanan dan keprofesionalan layanan kami.",
+    desc: "Dipercaya ribuan jamaah di seluruh Indonesia",
+    stat: "5K+",
+    statLabel: "Jamaah",
+    color: "text-primary",
+    bg: "bg-primary/5",
+    border: "border-primary/20",
   },
 ];
 
 const TrustSection = () => {
   return (
-    <section className="py-16 sm:py-20 md:py-24 border-t border-border">
+    <section className="py-14 sm:py-16 md:py-20 border-t border-border">
       <div className="section-container">
 
-        {/* Section header — centered like the reference */}
+        {/* Section header */}
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="flex flex-col items-center text-center gap-4 mb-12 sm:mb-14 md:mb-16"
+          className="flex flex-col items-start gap-2 mb-8 sm:mb-10"
         >
-          {/* Decorative star */}
-          <span className="text-primary text-2xl select-none">✦</span>
-
           <span className="pill-label">
             <span className="w-1.5 h-1.5 rounded-full bg-primary inline-block" />
-            Tentang El Massa
+            Kenapa El Massa?
           </span>
-
           <h2
             className="font-display font-extrabold text-foreground tracking-tight leading-tight"
-            style={{ fontSize: "clamp(1.75rem, 5vw, 3rem)" }}
+            style={{ fontSize: "clamp(1.6rem, 4.5vw, 2.6rem)" }}
           >
-            Kenapa Pilih El Massa?
+            Dipercaya, Berpengalaman,<br className="hidden sm:block" /> & Terpercaya
           </h2>
-
-          <p className="font-body text-sm sm:text-base text-muted-foreground max-w-sm sm:max-w-md leading-relaxed">
-            Kami hadir untuk memastikan setiap langkah perjalanan ibadah Anda berjalan lancar, nyaman, dan penuh keberkahan.
-          </p>
         </motion.div>
 
-        {/* Numbered feature cards — like reference */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-5">
+        {/* Compact cards grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {trustItems.map((item, i) => (
             <motion.div
               key={item.title}
-              initial={{ opacity: 0, y: 24 }}
+              initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="relative overflow-hidden rounded-2xl bg-card border border-border p-5 sm:p-6 flex flex-col gap-3"
+              transition={{ delay: i * 0.08 }}
+              className="flex items-center gap-4 rounded-2xl bg-card border border-border p-4 sm:p-5"
               style={{ boxShadow: "var(--shadow-soft)" }}
             >
-              {/* Icon */}
-              <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
-                <item.icon size={20} />
+              {/* Stat bubble */}
+              <div className={`flex-shrink-0 flex flex-col items-center justify-center rounded-xl ${item.bg} border ${item.border} w-16 h-16`}>
+                <span className={`font-display font-extrabold text-lg leading-none ${item.color}`}>
+                  {item.stat}
+                </span>
+                <span className={`font-body text-[9px] uppercase tracking-wider mt-0.5 ${item.color} opacity-80`}>
+                  {item.statLabel}
+                </span>
               </div>
 
               {/* Text */}
-              <div className="flex-1">
-                <h4 className="font-display text-base font-bold text-foreground mb-1.5 leading-snug">
-                  {item.title}
-                </h4>
-                <p className="font-body text-xs sm:text-sm text-muted-foreground leading-relaxed">
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center gap-1.5 mb-0.5">
+                  <item.icon size={13} className={`shrink-0 ${item.color}`} />
+                  <h4 className="font-display text-sm font-bold text-foreground leading-snug">
+                    {item.title}
+                  </h4>
+                </div>
+                <p className="font-body text-xs text-muted-foreground leading-relaxed">
                   {item.desc}
                 </p>
               </div>
 
-              {/* Big number watermark in corner — like reference */}
-              <span
-                className="absolute bottom-3 right-4 font-display font-extrabold text-foreground/[0.05] select-none pointer-events-none"
-                style={{ fontSize: "clamp(3.5rem, 8vw, 5rem)", lineHeight: 1 }}
-              >
-                {String(i + 1).padStart(2, "0")}
-              </span>
+              {/* Check */}
+              <CheckCircle2 size={16} className="shrink-0 text-muted-foreground/30" />
             </motion.div>
           ))}
         </div>
+
+        {/* Bottom note */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.4 }}
+          className="font-body text-xs text-muted-foreground text-center mt-6"
+        >
+          Kami hadir memastikan setiap langkah perjalanan ibadah Anda berjalan lancar & penuh keberkahan.
+        </motion.p>
 
       </div>
     </section>
