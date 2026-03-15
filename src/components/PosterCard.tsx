@@ -57,13 +57,13 @@ const PosterCard = ({ program, index }: PosterCardProps) => {
 
         {/* Content */}
         <div className="relative h-full flex flex-col justify-end p-3 sm:p-3.5">
-          <span className="inline-block self-start px-2 py-0.5 rounded-full text-[9px] font-body font-semibold bg-white/10 backdrop-blur-sm text-foreground/80 border border-white/15 mb-1.5">
+          <span className="inline-block self-start px-2 py-0.5 rounded-full text-[9px] font-body font-semibold bg-white/15 backdrop-blur-sm text-white/90 border border-white/20 mb-1.5">
             {program.bulan_keberangkatan}
           </span>
-          <h3 className="font-display text-sm sm:text-base font-bold text-foreground leading-tight mb-1">
+          <h3 className="font-display text-sm sm:text-base font-bold text-white leading-tight mb-1">
             {program.nama_program}
           </h3>
-          <div className="flex items-center gap-2 text-foreground/60 text-[9px] font-body mb-1.5">
+          <div className="flex items-center gap-2 text-white/65 text-[9px] font-body mb-1.5">
             <span className="flex items-center gap-0.5">
               <Calendar size={9} />
               {program.bulan_keberangkatan}
@@ -74,8 +74,8 @@ const PosterCard = ({ program, index }: PosterCardProps) => {
             </span>
           </div>
           <div>
-            <p className="font-body text-[8px] text-foreground/50 uppercase tracking-wider mb-0.5">Mulai dari</p>
-            <p className="font-display text-sm font-bold text-primary">
+            <p className="font-body text-[8px] text-white/55 uppercase tracking-wider mb-0.5">Mulai dari</p>
+            <p className="font-display text-sm font-bold text-primary-foreground" style={{ color: "hsl(328 100% 82%)" }}>
               {program.harga_mulai}
             </p>
           </div>
