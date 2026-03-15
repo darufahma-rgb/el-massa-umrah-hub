@@ -16,6 +16,7 @@ export type Database = {
     Tables: {
       umrah_programs: {
         Row: {
+          badge: string | null
           bonus_program: string | null
           bulan_keberangkatan: string
           catatan_program: string[] | null
@@ -41,6 +42,7 @@ export type Database = {
           whatsapp_booking_link: string
         }
         Insert: {
+          badge?: string | null
           bonus_program?: string | null
           bulan_keberangkatan: string
           catatan_program?: string[] | null
@@ -66,6 +68,7 @@ export type Database = {
           whatsapp_booking_link?: string
         }
         Update: {
+          badge?: string | null
           bonus_program?: string | null
           bulan_keberangkatan?: string
           catatan_program?: string[] | null
