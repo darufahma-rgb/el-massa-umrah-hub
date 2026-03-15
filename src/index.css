@@ -92,15 +92,7 @@
   }
 
   .poster-card:hover {
-    transform: scale(1.05) translateY(-4px);
     box-shadow: var(--shadow-elevated);
-    z-index: 10;
-  }
-
-  @media (max-width: 639px) {
-    .poster-card:hover {
-      transform: none;
-    }
   }
 
   .poster-gradient {
