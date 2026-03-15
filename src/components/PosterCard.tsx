@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Clock, ArrowUpRight } from "lucide-react";
+import { CalendarDays, Clock, Star } from "lucide-react";
 import type { UmrahProgram } from "../../shared/schema";
 
 interface PosterCardProps {
@@ -33,23 +33,22 @@ const PosterCard = ({ program, index }: PosterCardProps) => {
     >
       <Link to={`/program/${program.slug_url}`} className="block">
 
-        {/* ── Image ── */}
+        {/* ── Poster Image ── */}
         <div className="poster-card relative mb-3">
           <img
             src={program.poster_image}
             alt={program.nama_program}
-            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
             loading="lazy"
           />
 
-          {/* Subtle top fade for badge legibility */}
-          <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-black/30 to-transparent pointer-events-none" />
+          {/* Top fade for badge */}
+          <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-black/40 to-transparent pointer-events-none" />
 
           {/* Hover overlay */}
-          <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/15 transition-all duration-300 hidden sm:flex items-center justify-center rounded-2xl">
-            <span className="opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-3 group-hover:translate-y-0 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary text-white text-[10px] font-semibold font-body shadow-lg">
-              Lihat Detail
-              <ArrowUpRight size={11} />
+          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 rounded-2xl flex items-center justify-center">
+            <span className="opacity-0 group-hover:opacity-100 transition-all duration-300 scale-90 group-hover:scale-100 px-3 py-1.5 rounded-full bg-primary text-white text-[10px] font-semibold font-body shadow-lg">
+              Lihat Detail →
             </span>
           </div>
 
@@ -63,30 +62,47 @@ const PosterCard = ({ program, index }: PosterCardProps) => {
           )}
         </div>
 
-        {/* ── Info below image ── */}
-        <div className="px-0.5">
-          <h3 className="font-display text-sm sm:text-[0.9rem] font-bold text-foreground leading-snug mb-1.5 group-hover:text-primary transition-colors">
+        {/* ── Info Card ── */}
+        <div className="px-0.5 flex flex-col gap-1.5">
+
+          {/* Program name */}
+          <h3 className="font-display text-sm sm:text-[0.9rem] font-bold text-foreground leading-snug group-hover:text-primary transition-colors line-clamp-2">
             {program.nama_program}
           </h3>
 
-          <div className="flex items-center gap-1.5 text-muted-foreground text-[10px] font-body mb-2">
-            <Clock size={10} className="shrink-0" />
-            <span>{program.durasi_hari}</span>
-            <span className="text-border">·</span>
-            <span className="truncate">{program.kota_keberangkatan.split("/")[0].trim()}</span>
+          {/* Month & Duration */}
+          <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1">
+            <span className="flex items-center gap-1 text-[10px] font-body text-muted-foreground">
+              <CalendarDays size={9} className="shrink-0 text-primary/60" />
+              {program.bulan_keberangkatan}
+            </span>
+            <span className="flex items-center gap-1 text-[10px] font-body text-muted-foreground">
+              <Clock size={9} className="shrink-0 text-primary/60" />
+              {program.durasi_hari}
+            </span>
           </div>
 
-          <div className="flex items-end justify-between gap-1">
+          {/* Bonus highlight */}
+          {program.bonus_program && (
+            <span className="inline-flex items-center gap-1 text-[9px] font-body text-amber-600 bg-amber-50 border border-amber-200 rounded-full px-2 py-0.5 w-fit leading-tight">
+              <Star size={8} className="shrink-0 fill-amber-400 text-amber-400" />
+              <span className="line-clamp-1">{program.bonus_program}</span>
+            </span>
+          )}
+
+          {/* Price */}
+          <div className="pt-0.5 flex items-end justify-between gap-1">
             <div>
-              <p className="font-body text-[9px] text-muted-foreground uppercase tracking-wider mb-0.5">Mulai dari</p>
-              <p className="font-display text-sm font-bold text-primary leading-none">
+              <p className="font-body text-[8px] text-muted-foreground uppercase tracking-widest mb-0.5">Mulai dari</p>
+              <p className="font-display text-sm sm:text-[0.9rem] font-bold text-primary leading-none">
                 {program.harga_mulai}
               </p>
             </div>
-            <span className="text-[9px] font-body text-muted-foreground/60 underline underline-offset-2 shrink-0">
+            <span className="text-[9px] font-body font-medium text-primary/60 group-hover:text-primary transition-colors shrink-0">
               Detail →
             </span>
           </div>
+
         </div>
 
       </Link>
