@@ -94,7 +94,7 @@ const PosterCard = ({ program, index }: PosterCardProps) => {
           <div className="pt-0.5 flex items-end justify-between gap-1">
             <div>
               <p className="font-body text-[8px] text-muted-foreground uppercase tracking-widest mb-0.5">Mulai dari</p>
-              <p className="font-display text-sm sm:text-[0.9rem] font-bold text-primary leading-none">
+              <p className="font-display text-[0.72rem] sm:text-[0.9rem] font-bold text-primary leading-none whitespace-nowrap">
                 {program.harga_mulai}
               </p>
             </div>
