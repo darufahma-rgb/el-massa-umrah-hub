@@ -2,21 +2,17 @@ import { motion } from "framer-motion";
 import { useQuery } from "@tanstack/react-query";
 import PosterCard from "@/components/PosterCard";
 import TrustSection from "@/components/TrustSection";
-import { supabase } from "@/integrations/supabase/client";
 import heroBg from "@/assets/hero-bg.jpg";
 import { ChevronDown } from "lucide-react";
+import type { UmrahProgram } from "../../shared/schema";
 
 const Index = () => {
-  const { data: programs, isLoading } = useQuery({
+  const { data: programs, isLoading } = useQuery<UmrahProgram[]>({
     queryKey: ["umrah-programs"],
     queryFn: async () => {
-      const { data, error } = await supabase
-        .from("umrah_programs")
-        .select("*")
-        .eq("is_active", true)
-        .order("sort_order", { ascending: true });
-      if (error) throw error;
-      return data;
+      const res = await fetch("/api/programs");
+      if (!res.ok) throw new Error("Failed to fetch programs");
+      return res.json();
     },
   });
 

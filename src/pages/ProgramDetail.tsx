@@ -1,7 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
-import { supabase } from "@/integrations/supabase/client";
+import type { UmrahProgram } from "../../shared/schema";
 import {
   Calendar, Clock, MapPin, Building2, Plane, Star, Check, X,
   CreditCard, MessageCircle, ArrowLeft, Train, ChevronDown, ChevronUp
@@ -57,17 +57,12 @@ const ProgramDetail = () => {
   const { slug } = useParams();
   const [notesOpen, setNotesOpen] = useState(false);
 
-  const { data: program, isLoading } = useQuery({
+  const { data: program, isLoading } = useQuery<UmrahProgram>({
     queryKey: ["umrah-program", slug],
     queryFn: async () => {
-      const { data, error } = await supabase
-        .from("umrah_programs")
-        .select("*")
-        .eq("slug_url", slug!)
-        .eq("is_active", true)
-        .single();
-      if (error) throw error;
-      return data;
+      const res = await fetch(`/api/programs/${slug}`);
+      if (!res.ok) throw new Error("Program not found");
+      return res.json();
     },
     enabled: !!slug,
   });

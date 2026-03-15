@@ -1,9 +1,7 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Calendar, Clock, ArrowRight } from "lucide-react";
-import type { Database } from "@/integrations/supabase/types";
-
-type UmrahProgram = Database["public"]["Tables"]["umrah_programs"]["Row"];
+import type { UmrahProgram } from "../../shared/schema";
 
 interface PosterCardProps {
   program: UmrahProgram;
