@@ -94,13 +94,13 @@
 @layer components {
   .poster-card {
     @apply relative overflow-hidden rounded-2xl cursor-pointer flex-shrink-0;
-    box-shadow: var(--shadow-card), 0 0 0 5px white;
+    box-shadow: var(--shadow-card), 0 0 0 2px white;
     transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     aspect-ratio: 1441 / 2495;
   }
 
   .poster-card:hover {
-    box-shadow: var(--shadow-elevated), 0 0 0 5px white;
+    box-shadow: var(--shadow-elevated), 0 0 0 2px white;
   }
 
   .poster-gradient {
