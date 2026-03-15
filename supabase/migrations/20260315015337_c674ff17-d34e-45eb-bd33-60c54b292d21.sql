@@ -1,1 +1,0 @@
-ALTER TABLE public.umrah_programs ADD COLUMN badge TEXT DEFAULT NULL;
