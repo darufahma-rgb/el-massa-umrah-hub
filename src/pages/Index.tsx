@@ -136,8 +136,8 @@ const Index = () => {
           style={{
             width: "min(800px, 140vw)",
             height: "min(700px, 130vw)",
-            background: "radial-gradient(ellipse at center, hsl(328 95% 35% / 0.30) 0%, hsl(328 90% 40% / 0.14) 45%, transparent 70%)",
-            filter: "blur(50px)",
+            background: "radial-gradient(ellipse at center, hsl(328 76% 65% / 0.28) 0%, hsl(328 76% 55% / 0.12) 45%, transparent 70%)",
+            filter: "blur(40px)",
           }}
         />
         <div
@@ -145,8 +145,8 @@ const Index = () => {
           style={{
             width: "min(400px, 70vw)",
             height: "min(400px, 70vw)",
-            background: "radial-gradient(ellipse at center, hsl(290 70% 40% / 0.18) 0%, transparent 65%)",
-            filter: "blur(60px)",
+            background: "radial-gradient(ellipse at center, hsl(280 60% 60% / 0.10) 0%, transparent 65%)",
+            filter: "blur(50px)",
           }}
         />
 
