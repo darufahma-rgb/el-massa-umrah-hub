@@ -57,7 +57,7 @@ const programs = [
     sort_order: 1,
     harga_detail: [
       { city: "Pangkal Pinang (PGK)", price: "Rp 29.900.000" },
-      { city: "Jakarta (CGK)", price: "Rp 26.700.000" },
+      { city: "Jakarta (CGK)", price: "Rp 27.900.000" },
     ],
     fasilitas_include: [...fasilitasInclude, "Free Pembuatan Paspor & Vaksin"],
     fasilitas_exclude: fasilitasExclude,
@@ -87,7 +87,7 @@ const programs = [
     sort_order: 2,
     harga_detail: [
       { city: "Pangkal Pinang (PGK)", price: "Rp 36.700.000" },
-      { city: "Jakarta (CGK)", price: "Rp 35.200.000" },
+      { city: "Jakarta (CGK)", price: "Rp 34.700.000" },
     ],
     fasilitas_include: [...fasilitasInclude, "Free Kereta Cepat Madinah–Makkah"],
     fasilitas_exclude: fasilitasExclude,
@@ -146,7 +146,7 @@ const programs = [
     sort_order: 4,
     harga_detail: [
       { city: "Pangkal Pinang (PGK)", price: "Rp 29.900.000" },
-      { city: "Jakarta (CGK)", price: "Rp 27.500.000" },
+      { city: "Jakarta (CGK)", price: "Rp 27.900.000" },
     ],
     fasilitas_include: fasilitasInclude,
     fasilitas_exclude: fasilitasExclude,
@@ -204,7 +204,7 @@ const programs = [
     sort_order: 6,
     harga_detail: [
       { city: "Pangkal Pinang (PGK)", price: "Rp 30.500.000" },
-      { city: "Jakarta (CGK)", price: "Rp 30.300.000" },
+      { city: "Jakarta (CGK)", price: "Rp 28.500.000" },
     ],
     fasilitas_include: [...fasilitasInclude, "Free Pembuatan Paspor & Vaksin"],
     fasilitas_exclude: fasilitasExclude,
