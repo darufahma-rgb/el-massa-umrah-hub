@@ -1,7 +1,10 @@
 import { useParams, Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
-import type { UmrahProgram } from "../../shared/schema";
+import { supabase } from "@/integrations/supabase/client";
+import type { Tables } from "@/integrations/supabase/types";
+
+type UmrahProgram = Tables<"umrah_programs">;
 import {
   Clock, MapPin, Building2, Plane, Star, Check, X,
   CreditCard, MessageCircle, ArrowLeft, Train, ChevronDown, ChevronUp, Navigation
