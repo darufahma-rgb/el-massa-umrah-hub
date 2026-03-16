@@ -149,7 +149,7 @@ const Index = () => {
                   className="font-body font-bold uppercase text-white/85"
                   style={{ fontSize: "clamp(0.6rem, 1.1vw, 0.72rem)", letterSpacing: "0.22em" }}
                 >
-                  Program Umrah
+                  Katalog Program Umrah
                 </span>
               </motion.div>
 
@@ -165,14 +165,23 @@ const Index = () => {
                   textShadow: "0 1px 6px rgba(120,0,50,0.25)",
                 }}
               >
-                Katalog Paket<br />
-                <span style={{
-                  color: "rgba(255,255,255,1)",
-                  textShadow: "0 1px 6px rgba(160,0,70,0.20)",
-                }}>
-                  Umrah El Massa 2026
-                </span>
+                Paket Umrah El Massa
               </motion.h1>
+
+              {/* Sub title */}
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.55, delay: 0.2 }}
+                className="font-display font-black leading-tight tracking-tight mb-4 sm:mb-5"
+                style={{
+                  fontSize: "clamp(2rem, 6.5vw, 4.5rem)",
+                  color: "rgba(255,220,240,0.9)",
+                  textShadow: "0 1px 6px rgba(160,0,70,0.20)",
+                }}
+              >
+                Tahun 2026
+              </motion.p>
 
               {/* CTA buttons */}
               <motion.div
