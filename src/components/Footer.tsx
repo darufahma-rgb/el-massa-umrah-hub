@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer style={{ backgroundColor: "hsl(328, 76%, 50%)" }}>
+    <footer style={{ background: "linear-gradient(135deg, hsl(340, 80%, 58%) 0%, hsl(328, 76%, 50%) 50%, hsl(315, 72%, 44%) 100%)" }}>
       <div className="section-container py-8 sm:py-10 md:py-14">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 md:gap-10">
           <div>

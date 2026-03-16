@@ -38,7 +38,7 @@ const TrustSection = () => {
   return (
     <section
       className="py-14 sm:py-16 md:py-20"
-      style={{ backgroundColor: "hsl(328, 76%, 50%)" }}
+      style={{ background: "linear-gradient(135deg, hsl(340, 80%, 58%) 0%, hsl(328, 76%, 50%) 50%, hsl(315, 72%, 44%) 100%)" }}
     >
       <div className="section-container">
 
