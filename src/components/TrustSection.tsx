@@ -38,7 +38,7 @@ const TrustSection = () => {
   return (
     <section
       className="py-14 sm:py-16 md:py-20"
-      style={{ backgroundColor: "#F07088" }}
+      style={{ backgroundColor: "hsl(328, 76%, 50%)" }}
     >
       <div className="section-container">
 
@@ -63,43 +63,54 @@ const TrustSection = () => {
 
         {/* Compact cards grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          {trustItems.map((item, i) => (
-            <motion.div
-              key={item.title}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.08 }}
-              className="flex items-center gap-4 rounded-2xl bg-white/95 p-4 sm:p-5"
-              style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.10)" }}
-            >
-              {/* Stat bubble */}
-              <div className={`flex-shrink-0 flex flex-col items-center justify-center rounded-xl ${item.bg} border ${item.border} w-16 h-16`}>
-                <span className={`font-display font-extrabold text-lg leading-none ${item.color}`}>
-                  {item.stat}
-                </span>
-                <span className={`font-body text-[9px] uppercase tracking-wider mt-0.5 ${item.color} opacity-80`}>
-                  {item.statLabel}
-                </span>
-              </div>
+          {trustItems.map((item, i) => {
+            const isPink = i % 2 === 1;
+            return (
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.08 }}
+                className="flex items-center gap-4 rounded-2xl p-4 sm:p-5"
+                style={{
+                  backgroundColor: isPink ? "hsl(328, 76%, 44%)" : "rgba(255,255,255,0.97)",
+                  boxShadow: isPink
+                    ? "0 4px 24px rgba(0,0,0,0.18)"
+                    : "0 4px 24px rgba(0,0,0,0.10)",
+                }}
+              >
+                {/* Stat bubble */}
+                {isPink ? (
+                  <div className="flex-shrink-0 flex flex-col items-center justify-center rounded-xl w-16 h-16 bg-white/20">
+                    <span className="font-display font-extrabold text-lg leading-none text-white">{item.stat}</span>
+                    <span className="font-body text-[9px] uppercase tracking-wider mt-0.5 text-white/80">{item.statLabel}</span>
+                  </div>
+                ) : (
+                  <div className={`flex-shrink-0 flex flex-col items-center justify-center rounded-xl ${item.bg} border ${item.border} w-16 h-16`}>
+                    <span className={`font-display font-extrabold text-lg leading-none ${item.color}`}>{item.stat}</span>
+                    <span className={`font-body text-[9px] uppercase tracking-wider mt-0.5 ${item.color} opacity-80`}>{item.statLabel}</span>
+                  </div>
+                )}
 
-              {/* Text */}
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-1.5 mb-0.5">
-                  <item.icon size={13} className={`shrink-0 ${item.color}`} />
-                  <h4 className="font-display text-sm font-bold text-foreground leading-snug">
-                    {item.title}
-                  </h4>
+                {/* Text */}
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-1.5 mb-0.5">
+                    <item.icon size={13} className={`shrink-0 ${isPink ? "text-white/90" : item.color}`} />
+                    <h4 className={`font-display text-sm font-bold leading-snug ${isPink ? "text-white" : "text-foreground"}`}>
+                      {item.title}
+                    </h4>
+                  </div>
+                  <p className={`font-body text-xs leading-relaxed ${isPink ? "text-white/75" : "text-muted-foreground"}`}>
+                    {item.desc}
+                  </p>
                 </div>
-                <p className="font-body text-xs text-muted-foreground leading-relaxed">
-                  {item.desc}
-                </p>
-              </div>
 
-              {/* Check */}
-              <CheckCircle2 size={16} className="shrink-0 text-muted-foreground/30" />
-            </motion.div>
-          ))}
+                {/* Check */}
+                <CheckCircle2 size={16} className={`shrink-0 ${isPink ? "text-white/35" : "text-muted-foreground/30"}`} />
+              </motion.div>
+            );
+          })}
         </div>
 
         {/* Bottom note */}

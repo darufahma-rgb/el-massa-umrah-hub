@@ -192,16 +192,23 @@ const ProgramDetail = () => {
               ))}
             </div>
 
-            {/* Price */}
-            <div className="mt-1 pt-3 border-t border-border">
-              <p className="font-body text-[9px] uppercase tracking-widest text-muted-foreground mb-0.5">Mulai dari</p>
-              <p className="font-display font-extrabold text-primary" style={{ fontSize: "clamp(1.1rem, 4vw, 1.6rem)" }}>
-                {program.harga_mulai}
-              </p>
-            </div>
           </motion.div>
 
         </div>
+
+        {/* Price — centered below poster + info */}
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.25 }}
+          className="mt-5 text-center"
+        >
+          <p className="font-body text-[9px] uppercase tracking-widest text-muted-foreground mb-0.5">Mulai dari</p>
+          <p className="font-display font-extrabold text-primary" style={{ fontSize: "clamp(1.4rem, 5vw, 2rem)" }}>
+            {program.harga_mulai}
+          </p>
+        </motion.div>
+
       </section>
 
       <div className="section-container">
