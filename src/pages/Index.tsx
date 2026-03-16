@@ -165,12 +165,12 @@ const Index = () => {
                   textShadow: "0 1px 6px rgba(120,0,50,0.25)",
                 }}
               >
-                Paket Umrah<br />
+                Katalog Paket<br />
                 <span style={{
                   color: "rgba(255,255,255,1)",
                   textShadow: "0 1px 6px rgba(160,0,70,0.20)",
                 }}>
-                  El Massa
+                  Umrah El Massa 2026
                 </span>
               </motion.h1>
 
