@@ -50,8 +50,8 @@ const Navbar = () => {
 
         <div className="section-container flex items-center justify-between h-15 md:h-17" style={{ height: "3.75rem" }}>
 
-          {/* Logo */}
-          <Link to="/" className="flex items-center min-w-0 relative z-50 group">
+          {/* Logo — hidden on mobile, visible on desktop */}
+          <Link to="/" className="hidden lg:flex items-center min-w-0 relative z-50 group">
             <img
               src="/logo-white.png"
               alt="El Massa Tour & Travel"
@@ -108,7 +108,7 @@ const Navbar = () => {
           {/* Mobile hamburger */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-2 -mr-1.5 relative z-50 rounded-lg transition-colors text-white"
+            className="lg:hidden ml-auto p-2 -mr-1.5 relative z-50 rounded-lg transition-colors text-white"
             aria-label="Toggle menu"
           >
             <AnimatePresence mode="wait" initial={false}>
