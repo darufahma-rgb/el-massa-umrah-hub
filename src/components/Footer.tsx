@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="mt-6 sm:mt-8" style={{ backgroundColor: "#F07088" }}>
+    <footer style={{ backgroundColor: "#F07088" }}>
       <div className="section-container py-8 sm:py-10 md:py-14">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 md:gap-10">
           <div>

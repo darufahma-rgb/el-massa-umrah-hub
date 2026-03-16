@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Shield, Award, Plane, Users, CheckCircle2 } from "lucide-react";
+import { Shield, Plane, Users, CheckCircle2 } from "lucide-react";
 
 const trustItems = [
   {
@@ -11,16 +11,6 @@ const trustItems = [
     color: "text-emerald-600",
     bg: "bg-emerald-50",
     border: "border-emerald-200",
-  },
-  {
-    icon: Award,
-    title: "10+ Tahun Pengalaman",
-    desc: "Lebih dari satu dekade melayani jamaah",
-    stat: "10+",
-    statLabel: "Tahun",
-    color: "text-amber-600",
-    bg: "bg-amber-50",
-    border: "border-amber-200",
   },
   {
     icon: Plane,
