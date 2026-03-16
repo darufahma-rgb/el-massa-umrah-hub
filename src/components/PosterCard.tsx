@@ -81,30 +81,24 @@ const PosterCard = ({ program, index }: PosterCardProps) => {
         </div>
       </Link>
 
-      {/* ── Price + Cek Seat — outside main Link ── */}
-      <div
-        className="mt-2 rounded-xl px-3 pt-2 pb-2.5 flex flex-col gap-2"
-        style={{
-          background: "linear-gradient(135deg, hsl(335,85%,97%) 0%, hsl(345,80%,94%) 100%)",
-          border: "1px solid hsl(335,80%,87%)",
-        }}
-      >
-        {/* Price — full width, never truncated */}
+      {/* ── Price + Cek Seat — no card, flat layout ── */}
+      <div className="mt-2.5 flex flex-col gap-2">
+        {/* Price */}
         <div>
-          <p className="font-body text-[7px] text-primary/50 uppercase tracking-widest mb-0.5">Mulai dari</p>
-          <p className="font-display text-[0.82rem] font-bold text-primary leading-none">
+          <p className="font-body text-[7px] text-muted-foreground uppercase tracking-widest mb-0.5">Mulai dari</p>
+          <p className="font-display font-extrabold text-primary" style={{ fontSize: "clamp(0.9rem, 3vw, 1.1rem)" }}>
             {program.harga_mulai}
           </p>
         </div>
 
-        {/* Cek Seat button — full width */}
+        {/* Cek Seat button — solid pink, full width */}
         <Link
           to="/update-seat"
-          className="w-full inline-flex items-center justify-center gap-1 text-[9px] font-body font-semibold py-1.5 rounded-lg transition-all hover:opacity-80 active:scale-95"
-          style={{ background: "rgba(225,29,130,0.12)", color: "hsl(328,76%,42%)", border: "1px solid hsl(328,76%,80%)" }}
+          className="w-full inline-flex items-center justify-center gap-1.5 text-[10px] font-body font-bold py-2 rounded-xl text-white transition-all hover:opacity-90 active:scale-95"
+          style={{ background: "linear-gradient(135deg, hsl(328,76%,50%), hsl(345,80%,62%))" }}
           onClick={(e) => e.stopPropagation()}
         >
-          <Users size={9} />
+          <Users size={10} />
           Cek Ketersediaan Seat
         </Link>
       </div>
