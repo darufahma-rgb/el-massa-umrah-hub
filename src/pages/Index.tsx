@@ -147,10 +147,10 @@ const Index = () => {
           }}
         />
 
-        {/* Content — centered bottom */}
+        {/* Content — centered middle */}
         <div
-          className="absolute bottom-0 left-0 right-0 z-10 flex flex-col items-center text-center"
-          style={{ paddingBottom: "clamp(2.5rem, 7vh, 5.5rem)", paddingLeft: "1rem", paddingRight: "1rem" }}
+          className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center"
+          style={{ paddingLeft: "1rem", paddingRight: "1rem" }}
         >
           {/* Brand badge */}
           <motion.div
