@@ -138,6 +138,20 @@ const Index = () => {
             {/* Desktop wrapper — pushes content to right side */}
             <div className="lg:max-w-lg xl:max-w-xl lg:pr-14 xl:pr-24 2xl:pr-32">
 
+              {/* Logo */}
+              <motion.div
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.45 }}
+                className="flex items-center justify-center lg:justify-end mb-3 sm:mb-4"
+              >
+                <img
+                  src="/logo-el-massa.png"
+                  alt="El Massa Tour & Travel"
+                  style={{ height: "clamp(60px, 10vw, 100px)", width: "auto", filter: "drop-shadow(0 2px 8px rgba(0,0,0,0.25))" }}
+                />
+              </motion.div>
+
               {/* Brand badge */}
               <motion.div
                 initial={{ opacity: 0, y: 12 }}
