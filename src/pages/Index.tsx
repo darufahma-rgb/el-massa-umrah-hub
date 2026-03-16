@@ -128,29 +128,34 @@ const Index = () => {
     <main className="min-h-screen bg-background">
 
       {/* ── Hero ── */}
-      <section className="relative min-h-[80vh] sm:min-h-[85vh] flex flex-col items-start justify-center text-left overflow-hidden pt-20 pb-16">
+      <section className="relative min-h-[80vh] sm:min-h-[85vh] flex flex-col items-start justify-end text-left overflow-hidden pb-14 sm:pb-20">
 
-        {/* Gradient glow blob */}
-        <div
-          className="absolute top-[-5%] left-1/2 -translate-x-1/2 pointer-events-none"
-          style={{
-            width: "min(800px, 140vw)",
-            height: "min(700px, 130vw)",
-            background: "radial-gradient(ellipse at center, hsl(328 76% 65% / 0.28) 0%, hsl(328 76% 55% / 0.12) 45%, transparent 70%)",
-            filter: "blur(40px)",
-          }}
-        />
-        <div
-          className="absolute bottom-[-10%] right-[5%] pointer-events-none"
-          style={{
-            width: "min(400px, 70vw)",
-            height: "min(400px, 70vw)",
-            background: "radial-gradient(ellipse at center, hsl(280 60% 60% / 0.10) 0%, transparent 65%)",
-            filter: "blur(50px)",
-          }}
+        {/* Background image */}
+        <img
+          src="/hero-bg.png"
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover object-center"
+          aria-hidden="true"
         />
 
-        <div className="relative z-10 flex flex-col items-start gap-5 sm:gap-6 max-w-3xl section-container" style={{ paddingTop: 0, paddingBottom: 0 }}>
+        {/* Gradient overlay — dark at bottom for legibility, lighter at top */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "linear-gradient(to top, rgba(20,5,15,0.75) 0%, rgba(20,5,15,0.45) 45%, rgba(20,5,15,0.15) 100%)",
+          }}
+        />
+        {/* subtle left-edge vignette to ground the text */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "linear-gradient(to right, rgba(20,5,15,0.35) 0%, transparent 55%)",
+          }}
+        />
+
+        <div className="relative z-10 flex flex-col items-start gap-4 sm:gap-5 max-w-3xl section-container" style={{ paddingTop: 0, paddingBottom: 0 }}>
 
           {/* Eyebrow label */}
           <motion.div
@@ -158,7 +163,7 @@ const Index = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <span className="pill-label">
+            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-body font-medium bg-white/15 backdrop-blur-sm text-white border border-white/25">
               <span className="w-1.5 h-1.5 rounded-full bg-primary inline-block" />
               El Massa Tour & Travel 2026
             </span>
@@ -169,11 +174,11 @@ const Index = () => {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="font-display font-extrabold text-foreground tracking-tight leading-[0.88]"
-            style={{ fontSize: "clamp(2.6rem, 10vw, 6.5rem)" }}
+            className="font-display font-extrabold text-white tracking-tight leading-[0.88]"
+            style={{ fontSize: "clamp(2.6rem, 10vw, 6.5rem)", textShadow: "0 2px 20px rgba(0,0,0,0.4)" }}
           >
             Paket Umrah<br />
-            <span className="text-primary">El Massa</span>
+            <span className="text-primary" style={{ textShadow: "0 2px 24px rgba(225,29,130,0.5)" }}>El Massa</span>
           </motion.h1>
 
           {/* Subtitle */}
@@ -181,7 +186,7 @@ const Index = () => {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="font-body text-sm sm:text-base text-muted-foreground max-w-xs sm:max-w-sm leading-relaxed"
+            className="font-body text-sm sm:text-base text-white/80 max-w-xs sm:max-w-sm leading-relaxed"
           >
             Temukan paket umrah pilihan dengan pelayanan terbaik, hotel nyaman, dan harga terjangkau.
           </motion.p>
@@ -191,7 +196,7 @@ const Index = () => {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="flex items-center gap-3 mt-2"
+            className="flex items-center gap-3 mt-1"
           >
             <a
               href="https://wa.me/6281249476778?text=Assalamualaikum,%20saya%20ingin%20bertanya%20tentang%20paket%20umrah"
