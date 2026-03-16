@@ -83,29 +83,29 @@ const PosterCard = ({ program, index }: PosterCardProps) => {
 
       {/* ── Price + Cek Seat — outside main Link ── */}
       <div
-        className="mt-2 rounded-xl px-3 py-2.5 flex items-center justify-between gap-2"
+        className="mt-2 rounded-xl px-3 pt-2 pb-2.5 flex flex-col gap-2"
         style={{
           background: "linear-gradient(135deg, hsl(335,85%,97%) 0%, hsl(345,80%,94%) 100%)",
           border: "1px solid hsl(335,80%,87%)",
         }}
       >
-        {/* Price */}
-        <div className="min-w-0">
+        {/* Price — full width, never truncated */}
+        <div>
           <p className="font-body text-[7px] text-primary/50 uppercase tracking-widest mb-0.5">Mulai dari</p>
-          <p className="font-display text-[0.78rem] font-bold text-primary leading-none truncate">
+          <p className="font-display text-[0.82rem] font-bold text-primary leading-none">
             {program.harga_mulai}
           </p>
         </div>
 
-        {/* Cek Seat button */}
+        {/* Cek Seat button — full width */}
         <Link
           to="/update-seat"
-          className="shrink-0 inline-flex items-center gap-1 text-[9px] font-body font-semibold px-2.5 py-1.5 rounded-lg transition-all hover:opacity-80 active:scale-95"
-          style={{ background: "rgba(225,29,130,0.10)", color: "hsl(328,76%,45%)", border: "1px solid hsl(328,76%,80%)" }}
+          className="w-full inline-flex items-center justify-center gap-1 text-[9px] font-body font-semibold py-1.5 rounded-lg transition-all hover:opacity-80 active:scale-95"
+          style={{ background: "rgba(225,29,130,0.12)", color: "hsl(328,76%,42%)", border: "1px solid hsl(328,76%,80%)" }}
           onClick={(e) => e.stopPropagation()}
         >
-          <Users size={8} />
-          Cek Seat
+          <Users size={9} />
+          Cek Ketersediaan Seat
         </Link>
       </div>
 
