@@ -5,12 +5,12 @@ import type { UmrahProgram } from "../../shared/schema";
 import { getHotelMapsUrl } from "@/lib/hotelMaps";
 
 const SEAT_DATA: Record<string, { total: number; sisa: number }> = {
-  "umrah-kemerdekaan-agustus-2026":     { total: 40, sisa: 12 },
-  "umrah-eksklusif-maulid-september-2026": { total: 30, sisa: 24 },
-  "umrah-reguler-maulid-september-2026":   { total: 45, sisa: 31 },
-  "umrah-reguler-oktober-2026":            { total: 45, sisa: 18 },
-  "umrah-spesial-oktober-2026":            { total: 30, sisa: 8  },
-  "umrah-reguler-november-2026":           { total: 45, sisa: 40 },
+  "umrah-kemerdekaan-agustus":       { total: 40, sisa: 40 },
+  "umrah-ekslusif-maulid-september": { total: 40, sisa: 33 },
+  "umrah-reguler-maulid-september":  { total: 40, sisa: 40 },
+  "umrah-reguler-oktober-10d":       { total: 40, sisa: 40 },
+  "umrah-spesial-oktober-12d":       { total: 40, sisa: 40 },
+  "umrah-reguler-november-10d":      { total: 40, sisa: 40 },
 };
 
 function getSeatColor(sisa: number, total: number) {
@@ -21,7 +21,7 @@ function getSeatColor(sisa: number, total: number) {
 }
 
 const SeatCard = ({ program, index }: { program: UmrahProgram; index: number }) => {
-  const seat = SEAT_DATA[program.slug_url] ?? { total: 40, sisa: 20 };
+  const seat = SEAT_DATA[program.slug_url] ?? { total: 40, sisa: 40 };
   const { bar, badge, text, label } = getSeatColor(seat.sisa, seat.total);
   const pct = Math.round((seat.sisa / seat.total) * 100);
   const isUrgent = pct <= 25;

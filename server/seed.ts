@@ -35,7 +35,9 @@ const rekening = [
   },
 ];
 
-const wa = "https://wa.me/6281249476778";
+const waBase = "https://wa.me/6281249476778";
+const waText = (program: string, bulan: string) =>
+  `${waBase}?text=${encodeURIComponent(`Assalamualaikum, saya tertarik dengan paket ${program} bulan ${bulan} dari El Massa Tour. Mohon informasi lebih lanjut. Terima kasih 🙏`)}`;
 
 const programs = [
   {
@@ -66,7 +68,7 @@ const programs = [
       "Include All In — Tanpa Biaya Tambahan",
     ],
     rekening_pembayaran: rekening,
-    whatsapp_booking_link: wa,
+    whatsapp_booking_link: waText("Umrah Kemerdekaan", "Agustus 2026"),
   },
   {
     slug_url: "umrah-ekslusif-maulid-september",
@@ -95,7 +97,7 @@ const programs = [
       "Hotel bintang 5 dekat Masjidil Haram",
     ],
     rekening_pembayaran: rekening,
-    whatsapp_booking_link: wa,
+    whatsapp_booking_link: waText("Umrah Eksklusif Bulan Maulid", "September 2026"),
   },
   {
     slug_url: "umrah-reguler-maulid-september",
@@ -125,7 +127,7 @@ const programs = [
       "Include All In — Tanpa Biaya Tambahan",
     ],
     rekening_pembayaran: rekening,
-    whatsapp_booking_link: wa,
+    whatsapp_booking_link: waText("Umrah Reguler Maulid 12 Hari", "September 2026"),
   },
   {
     slug_url: "umrah-reguler-oktober-10d",
@@ -153,7 +155,7 @@ const programs = [
       "Include All In — Tanpa Biaya Tambahan",
     ],
     rekening_pembayaran: rekening,
-    whatsapp_booking_link: wa,
+    whatsapp_booking_link: waText("Umrah Reguler Oktober", "Oktober 2026"),
   },
   {
     slug_url: "umrah-spesial-oktober-12d",
@@ -183,7 +185,7 @@ const programs = [
       "Include All In — Tanpa Biaya Tambahan",
     ],
     rekening_pembayaran: rekening,
-    whatsapp_booking_link: wa,
+    whatsapp_booking_link: waText("Umrah Spesial Oktober", "Oktober 2026"),
   },
   {
     slug_url: "umrah-reguler-november-10d",
@@ -212,7 +214,7 @@ const programs = [
       "Free Pembuatan Paspor & Vaksin",
     ],
     rekening_pembayaran: rekening,
-    whatsapp_booking_link: wa,
+    whatsapp_booking_link: waText("Umrah Reguler November", "November 2026"),
   },
 ];
 

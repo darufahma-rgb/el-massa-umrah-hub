@@ -40,10 +40,10 @@ const Navbar = () => {
       <nav
         className="fixed top-0 left-0 right-0 z-50"
         style={{
-          background: "rgba(10, 5, 18, 0.92)",
-          backdropFilter: "blur(20px) saturate(180%)",
-          borderBottom: "1px solid rgba(225, 29, 130, 0.18)",
-          boxShadow: "0 4px 32px rgba(0,0,0,0.28)",
+          background: "rgba(15, 8, 28, 0.38)",
+          backdropFilter: "blur(24px) saturate(160%)",
+          borderBottom: "1px solid rgba(255, 255, 255, 0.10)",
+          boxShadow: "0 4px 24px rgba(0,0,0,0.18)",
         }}
       >
         {/* Thin gradient accent line at very top */}

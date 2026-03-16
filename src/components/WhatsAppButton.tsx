@@ -1,6 +1,6 @@
 import { MessageCircle } from "lucide-react";
 
-const WA_LINK = "https://wa.me/6281234567890?text=Halo%20admin%20El%20Massa%2C%20saya%20ingin%20bertanya%20tentang%20program%20umrah.";
+const WA_LINK = "https://wa.me/6281249476778?text=Halo%20admin%20El%20Massa%2C%20saya%20ingin%20bertanya%20tentang%20program%20umrah.";
 
 const WhatsAppButton = () => {
   return (
