@@ -4,8 +4,9 @@ import { motion } from "framer-motion";
 import type { UmrahProgram } from "../../shared/schema";
 import {
   Clock, MapPin, Building2, Plane, Star, Check, X,
-  CreditCard, MessageCircle, ArrowLeft, Train, ChevronDown, ChevronUp
+  CreditCard, MessageCircle, ArrowLeft, Train, ChevronDown, ChevronUp, Navigation
 } from "lucide-react";
+import { getHotelMapsUrl } from "@/lib/hotelMaps";
 import { useState, useEffect } from "react";
 
 const facilityIcons: Record<string, React.ReactNode> = {
@@ -218,21 +219,35 @@ const ProgramDetail = () => {
           <h2 className="font-display text-lg sm:text-xl md:text-2xl font-bold text-foreground mb-4 sm:mb-5">Highlight Program</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
             {[
-              { icon: <Building2 size={18} />, label: "Hotel Makkah", value: program.hotel_makkah },
-              { icon: <Building2 size={18} />, label: "Hotel Madinah", value: program.hotel_madinah },
-              { icon: <Plane size={18} />, label: "Maskapai", value: program.maskapai },
-              { icon: <Train size={18} />, label: "Bonus", value: program.bonus_program },
-            ].map((item, i) => (
-              <div key={i} className="glass-card flex items-start gap-3 sm:gap-4">
-                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-primary/15 flex items-center justify-center text-primary shrink-0">
-                  {item.icon}
+              { icon: <Building2 size={18} />, label: "Hotel Makkah", value: program.hotel_makkah, isHotel: true },
+              { icon: <Building2 size={18} />, label: "Hotel Madinah", value: program.hotel_madinah, isHotel: true },
+              { icon: <Plane size={18} />, label: "Maskapai", value: program.maskapai, isHotel: false },
+              { icon: <Train size={18} />, label: "Bonus", value: program.bonus_program, isHotel: false },
+            ].map((item, i) => {
+              const mapsUrl = item.isHotel && item.value ? getHotelMapsUrl(item.value) : null;
+              return (
+                <div key={i} className="glass-card flex items-start gap-3 sm:gap-4">
+                  <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-primary/15 flex items-center justify-center text-primary shrink-0">
+                    {item.icon}
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <p className="font-body text-[10px] sm:text-xs text-muted-foreground">{item.label}</p>
+                    <p className="font-body text-xs sm:text-sm font-semibold text-foreground break-words">{item.value || '-'}</p>
+                    {mapsUrl && (
+                      <a
+                        href={mapsUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 mt-1.5 px-2 py-0.5 rounded-full text-[9px] font-body font-semibold bg-blue-50 text-blue-600 border border-blue-200 hover:bg-blue-100 transition-colors"
+                      >
+                        <Navigation size={8} />
+                        Lihat di Google Maps
+                      </a>
+                    )}
+                  </div>
                 </div>
-                <div className="min-w-0">
-                  <p className="font-body text-[10px] sm:text-xs text-muted-foreground">{item.label}</p>
-                  <p className="font-body text-xs sm:text-sm font-semibold text-foreground break-words">{item.value || '-'}</p>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </motion.section>
 

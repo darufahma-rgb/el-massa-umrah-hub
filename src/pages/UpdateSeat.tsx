@@ -1,7 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
-import { Plane, Hotel, Clock, Users, Phone, Star, AlertCircle } from "lucide-react";
+import { Plane, Hotel, Clock, Users, Phone, Star, AlertCircle, Navigation } from "lucide-react";
 import type { UmrahProgram } from "../../shared/schema";
+import { getHotelMapsUrl } from "@/lib/hotelMaps";
 
 const SEAT_DATA: Record<string, { total: number; sisa: number }> = {
   "umrah-kemerdekaan-agustus-2026":     { total: 40, sisa: 12 },
@@ -61,21 +62,35 @@ const SeatCard = ({ program, index }: { program: UmrahProgram; index: number }) 
           {[
             { label: "Hotel Makkah", name: program.hotel_makkah },
             { label: "Hotel Madinah", name: program.hotel_madinah },
-          ].map((h) => (
-            <div key={h.label} className="rounded-xl bg-muted/60 px-3 py-2">
-              <p className="font-body text-[9px] text-muted-foreground uppercase tracking-wider mb-0.5">{h.label}</p>
-              <div className="flex items-center gap-1">
-                <Hotel size={10} className="shrink-0 text-primary/60" />
-                <p className="font-display text-xs font-semibold text-foreground leading-snug line-clamp-1">{h.name}</p>
+          ].map((h) => {
+            const mapsUrl = getHotelMapsUrl(h.name);
+            return (
+              <div key={h.label} className="rounded-xl bg-muted/60 px-3 py-2">
+                <p className="font-body text-[9px] text-muted-foreground uppercase tracking-wider mb-0.5">{h.label}</p>
+                <div className="flex items-center gap-1">
+                  <Hotel size={10} className="shrink-0 text-primary/60" />
+                  <p className="font-display text-xs font-semibold text-foreground leading-snug line-clamp-1">{h.name}</p>
+                </div>
+                <div className="flex items-center gap-0.5 mt-0.5 mb-1">
+                  {[...Array(4)].map((_, i) => (
+                    <Star key={i} size={7} className="fill-amber-400 text-amber-400" />
+                  ))}
+                  <span className="font-body text-[8px] text-muted-foreground ml-0.5">setaraf</span>
+                </div>
+                {mapsUrl && (
+                  <a
+                    href={mapsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded-full text-[8px] font-body font-semibold bg-blue-50 text-blue-600 border border-blue-200 hover:bg-blue-100 transition-colors"
+                  >
+                    <Navigation size={7} />
+                    Maps
+                  </a>
+                )}
               </div>
-              <div className="flex items-center gap-0.5 mt-0.5">
-                {[...Array(4)].map((_, i) => (
-                  <Star key={i} size={7} className="fill-amber-400 text-amber-400" />
-                ))}
-                <span className="font-body text-[8px] text-muted-foreground ml-0.5">setaraf</span>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* Duration + Price row */}
