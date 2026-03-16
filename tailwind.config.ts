@@ -14,7 +14,7 @@ export default {
     },
     extend: {
       fontFamily: {
-        display: ['Hubhead', 'sans-serif'],
+        display: ['Calisga', 'Hubhead', 'sans-serif'],
         body: ['Inter', 'sans-serif'],
       },
       colors: {
