@@ -1,10 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
-import { supabase } from "@/integrations/supabase/client";
-import type { Tables } from "@/integrations/supabase/types";
-
-type UmrahProgram = Tables<"umrah_programs">;
+import type { UmrahProgram } from "../../shared/schema";
 import {
   Clock, MapPin, Building2, Plane, Star, Check, X,
   CreditCard, MessageCircle, ArrowLeft, Train, ChevronDown, ChevronUp, Navigation
@@ -74,15 +71,9 @@ const ProgramDetail = () => {
   const { data: program, isLoading } = useQuery<UmrahProgram>({
     queryKey: ["umrah-program", slug],
     queryFn: async () => {
-      const { data, error } = await supabase
-        .from("umrah_programs")
-        .select("*")
-        .eq("slug_url", slug!)
-        .eq("is_active", true)
-        .maybeSingle();
-      if (error) throw error;
-      if (!data) throw new Error("Program not found");
-      return data;
+      const res = await fetch(`/api/programs/${slug}`);
+      if (!res.ok) throw new Error("Program not found");
+      return res.json();
     },
     enabled: !!slug,
   });

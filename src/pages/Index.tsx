@@ -4,10 +4,7 @@ import { Link } from "react-router-dom";
 import PosterCard from "@/components/PosterCard";
 import TrustSection from "@/components/TrustSection";
 import { CalendarDays, Play, Phone } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
-import type { Tables } from "@/integrations/supabase/types";
-
-type UmrahProgram = Tables<"umrah_programs">;
+import type { UmrahProgram } from "../../shared/schema";
 
 const MONTH_ORDER: Record<string, number> = {
   Januari: 1, Februari: 2, Maret: 3, April: 4,
@@ -84,13 +81,9 @@ const Index = () => {
   const { data: programs, isLoading } = useQuery<UmrahProgram[]>({
     queryKey: ["umrah-programs"],
     queryFn: async () => {
-      const { data, error } = await supabase
-        .from("umrah_programs")
-        .select("*")
-        .eq("is_active", true)
-        .order("sort_order", { ascending: true });
-      if (error) throw error;
-      return data;
+      const res = await fetch("/api/programs");
+      if (!res.ok) throw new Error("Failed to fetch programs");
+      return res.json();
     },
   });
 

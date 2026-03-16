@@ -1,9 +1,7 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { CalendarDays, Clock, Star, Users } from "lucide-react";
-import type { Tables } from "@/integrations/supabase/types";
-
-type UmrahProgram = Tables<"umrah_programs">;
+import type { UmrahProgram } from "../../shared/schema";
 
 interface PosterCardProps {
   program: UmrahProgram;
