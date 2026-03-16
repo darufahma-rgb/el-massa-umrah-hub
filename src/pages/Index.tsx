@@ -95,54 +95,47 @@ const Index = () => {
       {/* ── Hero ── */}
       <section className="relative w-full overflow-hidden" style={{ height: "100vh", minHeight: 480, maxHeight: 900 }}>
 
-        {/* Background — warm brown/pink gradient with Islamic pattern feel */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background: "linear-gradient(160deg, hsl(20,30%,18%) 0%, hsl(340,35%,22%) 35%, hsl(328,50%,28%) 60%, hsl(340,40%,20%) 100%)",
-          }}
+        {/* Background image — fills the full viewport */}
+        <img
+          src="/hero-bg-new.png"
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover object-bottom"
+          aria-hidden="true"
         />
 
-        {/* Decorative geometric pattern overlay */}
-        <div
-          className="absolute inset-0 pointer-events-none opacity-[0.06]"
-          style={{
-            backgroundImage: `repeating-conic-gradient(hsl(40,60%,70%) 0% 25%, transparent 0% 50%)`,
-            backgroundSize: "60px 60px",
-          }}
-        />
-
-        {/* Soft radial glow */}
+        {/* Gradient overlays — matching program section pink palette */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
-            background: "radial-gradient(ellipse 70% 50% at 50% 55%, hsl(328,60%,40%,0.25) 0%, transparent 70%)",
+            background:
+              "linear-gradient(to top, hsl(330,80%,15%,0.92) 0%, hsl(328,76%,28%,0.65) 40%, hsl(340,80%,38%,0.30) 70%, transparent 100%)",
           }}
         />
-
-        {/* Bottom fade */}
         <div
-          className="absolute inset-x-0 bottom-0 h-32 pointer-events-none"
+          className="absolute inset-0 pointer-events-none"
           style={{
-            background: "linear-gradient(to top, hsl(20,25%,12%) 0%, transparent 100%)",
+            background:
+              "linear-gradient(135deg, hsl(340,80%,20%,0.35) 0%, transparent 60%)",
           }}
         />
 
-        {/* Content */}
-        <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center px-4">
-
-          {/* Bismillah / badge */}
+        {/* Content — centered middle */}
+        <div
+          className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center"
+          style={{ paddingLeft: "1rem", paddingRight: "1rem" }}
+        >
+          {/* Brand badge */}
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.45 }}
-            className="mb-4 sm:mb-5"
+            className="flex items-center gap-2 mb-3 sm:mb-4"
           >
             <span
-              className="font-body font-medium tracking-[0.25em] uppercase"
-              style={{ fontSize: "clamp(0.6rem, 1.2vw, 0.72rem)", color: "hsl(35,50%,72%)" }}
+              className="font-body font-bold uppercase text-white/90"
+              style={{ fontSize: "clamp(0.6rem, 1.2vw, 0.75rem)", letterSpacing: "0.2em" }}
             >
-              ✦ Bismillah Berangkat Umrah ✦
+              Program Umrah
             </span>
           </motion.div>
 
@@ -153,34 +146,32 @@ const Index = () => {
             transition={{ duration: 0.6, delay: 0.08 }}
             className="font-display font-black leading-[1.05] tracking-tight mb-4 sm:mb-5"
             style={{
-              fontSize: "clamp(2.8rem, 11vw, 7.5rem)",
-              color: "hsl(30,40%,92%)",
-              textShadow: "0 2px 20px hsl(20,30%,10%,0.6)",
+              fontSize: "clamp(3rem, 12vw, 8rem)",
+              color: "rgba(255, 245, 250, 1)",
+              textShadow: "0 2px 16px rgba(140,0,60,0.5), 0 6px 40px rgba(100,0,40,0.35)",
             }}
           >
             Paket Umrah<br />
             <span style={{
-              background: "linear-gradient(135deg, hsl(35,55%,75%), hsl(328,60%,70%), hsl(340,50%,65%))",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              filter: "drop-shadow(0 2px 8px hsl(328,50%,30%,0.5))",
+              color: "rgba(255,255,255,1)",
+              textShadow: "0 0 30px rgba(255,200,230,0.9), 0 2px 16px rgba(180,0,80,0.4)",
             }}>
               El Massa
             </span>
           </motion.h1>
 
-          {/* Description */}
+          {/* Short description */}
           <motion.p
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
             className="font-body text-sm sm:text-base max-w-sm sm:max-w-md leading-relaxed mb-6 sm:mb-7"
-            style={{ color: "hsl(30,30%,75%)" }}
+            style={{ color: "rgba(255, 230, 242, 0.90)" }}
           >
             Pelayanan terbaik, hotel nyaman di Makkah & Madinah, dan harga terjangkau. Berangkat dari Pangkal Pinang & Jakarta.
           </motion.p>
 
-          {/* CTA buttons */}
+          {/* CTA buttons — compact pill style */}
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
@@ -189,26 +180,26 @@ const Index = () => {
           >
             <a
               href="#programs"
-              className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full font-body font-semibold text-sm transition-all hover:scale-105 active:scale-95"
+              className="inline-flex items-center gap-1.5 px-5 py-2 rounded-full font-body font-semibold text-sm transition-all hover:scale-105 active:scale-95"
               style={{
-                background: "linear-gradient(135deg, hsl(35,50%,68%), hsl(328,60%,55%))",
-                color: "white",
-                boxShadow: "0 4px 20px hsl(328,50%,30%,0.35)",
+                background: "rgba(255,255,255,0.95)",
+                color: "hsl(328,76%,38%)",
+                boxShadow: "0 2px 16px rgba(180,0,80,0.25)",
               }}
             >
-              <Play size={13} fill="white" strokeWidth={0} />
+              <Play size={13} fill="hsl(328,76%,38%)" strokeWidth={0} />
               Lihat Program
             </a>
             <a
               href="https://wa.me/6281249476778?text=Assalamualaikum,%20saya%20ingin%20bertanya%20tentang%20paket%20umrah"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full font-body font-semibold text-sm transition-all hover:scale-105 active:scale-95"
+              className="inline-flex items-center gap-1.5 px-5 py-2 rounded-full font-body font-semibold text-sm text-white transition-all hover:scale-105 active:scale-95"
               style={{
-                background: "hsl(20,25%,20%,0.6)",
-                color: "hsl(30,30%,80%)",
+                background: "rgba(100,0,45,0.55)",
                 backdropFilter: "blur(12px)",
-                border: "1px solid hsl(35,40%,50%,0.3)",
+                border: "1px solid rgba(255,180,215,0.35)",
+                boxShadow: "0 2px 16px rgba(100,0,45,0.30)",
               }}
             >
               <Phone size={13} />
