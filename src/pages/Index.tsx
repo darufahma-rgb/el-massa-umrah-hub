@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import PosterCard from "@/components/PosterCard";
 import TrustSection from "@/components/TrustSection";
-import { ChevronRight, CalendarDays } from "lucide-react";
+import { ChevronRight, CalendarDays, Play, Phone, ArrowRight } from "lucide-react";
 import type { UmrahProgram } from "../../shared/schema";
 import { useRef } from "react";
 
@@ -128,9 +128,9 @@ const Index = () => {
     <main className="min-h-screen bg-background">
 
       {/* ── Hero ── */}
-      <section className="relative min-h-[80vh] sm:min-h-[85vh] flex flex-col items-start justify-end text-left overflow-hidden pb-14 sm:pb-20">
+      <section className="relative w-full overflow-hidden" style={{ height: "100vh", minHeight: 480, maxHeight: 900 }}>
 
-        {/* Background image */}
+        {/* Background image — fills the full viewport */}
         <img
           src="/hero-bg.png"
           alt=""
@@ -138,76 +138,138 @@ const Index = () => {
           aria-hidden="true"
         />
 
-        {/* Gradient overlay — dark at bottom for legibility, lighter at top */}
+        {/* Netflix-style gradient overlays */}
+        {/* Bottom-to-top dark fade */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
             background:
-              "linear-gradient(to top, rgba(20,5,15,0.75) 0%, rgba(20,5,15,0.45) 45%, rgba(20,5,15,0.15) 100%)",
+              "linear-gradient(to top, rgba(8,4,12,0.96) 0%, rgba(8,4,12,0.65) 35%, rgba(8,4,12,0.10) 65%, transparent 100%)",
           }}
         />
-        {/* subtle left-edge vignette to ground the text */}
+        {/* Left vignette for text legibility */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
             background:
-              "linear-gradient(to right, rgba(20,5,15,0.35) 0%, transparent 55%)",
+              "linear-gradient(to right, rgba(8,4,12,0.80) 0%, rgba(8,4,12,0.40) 40%, transparent 70%)",
           }}
         />
 
-        <div className="relative z-10 flex flex-col items-start gap-4 sm:gap-5 max-w-3xl section-container" style={{ paddingTop: 0, paddingBottom: 0 }}>
+        {/* Content — anchored bottom-left like Netflix */}
+        <div
+          className="absolute bottom-0 left-0 right-0 z-10 section-container"
+          style={{ paddingBottom: "clamp(2.5rem, 6vh, 5rem)", paddingTop: 0 }}
+        >
+          <div className="flex flex-col items-start gap-3 sm:gap-4 max-w-2xl">
 
-          {/* Eyebrow label */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-body font-medium bg-white/15 backdrop-blur-sm text-white border border-white/25">
-              <span className="w-1.5 h-1.5 rounded-full bg-primary inline-block" />
-              El Massa Tour & Travel 2026
-            </span>
-          </motion.div>
-
-          {/* Main title */}
-          <motion.h1
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="font-display font-extrabold text-white tracking-tight leading-[0.88]"
-            style={{ fontSize: "clamp(2.6rem, 10vw, 6.5rem)", textShadow: "0 2px 20px rgba(0,0,0,0.4)" }}
-          >
-            Paket Umrah<br />
-            <span className="text-primary" style={{ textShadow: "0 2px 24px rgba(225,29,130,0.5)" }}>El Massa</span>
-          </motion.h1>
-
-          {/* Subtitle */}
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="font-body text-sm sm:text-base text-white/80 max-w-xs sm:max-w-sm leading-relaxed"
-          >
-            Temukan paket umrah pilihan dengan pelayanan terbaik, hotel nyaman, dan harga terjangkau.
-          </motion.p>
-
-          {/* CTA */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="flex items-center gap-3 mt-1"
-          >
-            <a
-              href="https://wa.me/6281249476778?text=Assalamualaikum,%20saya%20ingin%20bertanya%20tentang%20paket%20umrah"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-booking gap-2"
+            {/* Brand badge — Netflix "SERIES" style */}
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.45 }}
+              className="flex items-center gap-2"
             >
-              Hubungi Kami
-            </a>
-          </motion.div>
+              <img src="/logo-white.png" alt="El Massa" className="h-5 sm:h-6 object-contain" />
+              <span
+                className="font-body font-bold tracking-[0.18em] uppercase text-white/90"
+                style={{ fontSize: "clamp(0.6rem, 1.2vw, 0.75rem)", letterSpacing: "0.2em" }}
+              >
+                Program Umrah
+              </span>
+            </motion.div>
+
+            {/* Main title */}
+            <motion.h1
+              initial={{ opacity: 0, y: 28 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.08 }}
+              className="font-display font-black text-white leading-[0.86] tracking-tight"
+              style={{
+                fontSize: "clamp(3rem, 11vw, 7.5rem)",
+                textShadow: "0 4px 32px rgba(0,0,0,0.5)",
+              }}
+            >
+              Paket Umrah<br />
+              <span className="text-primary" style={{ textShadow: "0 2px 30px rgba(225,29,130,0.55)" }}>
+                El Massa
+              </span>
+            </motion.h1>
+
+            {/* Metadata row — rating / year / category / programs count */}
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.18 }}
+              className="flex items-center gap-2 sm:gap-3 flex-wrap"
+            >
+              <span className="border border-white/50 text-white/90 font-body font-semibold px-1.5 py-0.5 text-[10px] sm:text-xs rounded">
+                Terpercaya
+              </span>
+              <span className="text-white/70 font-body text-xs sm:text-sm font-medium">2026</span>
+              <span className="w-1 h-1 rounded-full bg-white/40 inline-block" />
+              <span className="text-white/70 font-body text-xs sm:text-sm font-medium">Ibadah Umrah</span>
+              <span className="w-1 h-1 rounded-full bg-white/40 inline-block" />
+              <span className="text-white/70 font-body text-xs sm:text-sm font-medium">6 Paket Tersedia</span>
+            </motion.div>
+
+            {/* Short description */}
+            <motion.p
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.26 }}
+              className="font-body text-sm sm:text-base text-white/75 max-w-xs sm:max-w-sm leading-relaxed"
+            >
+              Pelayanan terbaik, hotel nyaman di Makkah & Madinah, dan harga terjangkau. Berangkat dari Pangkal Pinang & Jakarta.
+            </motion.p>
+
+            {/* CTA buttons — Watch Now + More Info style */}
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.34 }}
+              className="flex items-center gap-3 mt-1"
+            >
+              {/* Primary — "Lihat Program" like ▶ Watch now */}
+              <a
+                href="#programs"
+                className="inline-flex items-center gap-2 px-5 sm:px-7 py-2.5 sm:py-3 rounded font-body font-bold text-sm sm:text-base text-white transition-opacity hover:opacity-85 active:opacity-70"
+                style={{ background: "rgba(255,255,255,0.20)", backdropFilter: "blur(8px)", border: "1px solid rgba(255,255,255,0.30)" }}
+              >
+                <Play size={16} fill="white" />
+                Lihat Program
+              </a>
+
+              {/* Secondary — "Hubungi Kami" like ⊕ More Info */}
+              <a
+                href="https://wa.me/6281249476778?text=Assalamualaikum,%20saya%20ingin%20bertanya%20tentang%20paket%20umrah"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-5 sm:px-7 py-2.5 sm:py-3 rounded font-body font-bold text-sm sm:text-base text-black transition-opacity hover:opacity-90 active:opacity-75"
+                style={{ background: "#e11d82" }}
+              >
+                <Phone size={15} />
+                Hubungi Kami
+              </a>
+            </motion.div>
+          </div>
+
+          {/* Bottom-right "more like this" hint */}
+          <motion.a
+            href="#programs"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="absolute bottom-0 right-0 hidden sm:flex items-center gap-2 text-white/60 hover:text-white/90 transition-colors font-body text-xs sm:text-sm font-medium"
+            style={{ paddingBottom: "clamp(2.5rem, 6vh, 5rem)", paddingRight: "clamp(1rem, 4vw, 3rem)" }}
+          >
+            <span>lihat semua</span>
+            <span className="w-8 h-8 rounded-full border border-white/40 flex items-center justify-center hover:border-white/80 transition-colors">
+              <ArrowRight size={14} />
+            </span>
+          </motion.a>
         </div>
+
       </section>
 
       {/* ── Program Section Heading ── */}
