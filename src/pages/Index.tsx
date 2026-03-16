@@ -93,119 +93,140 @@ const Index = () => {
     <main className="min-h-screen bg-background">
 
       {/* ── Hero ── */}
-      <section className="relative w-full overflow-hidden" style={{ height: "100vh", minHeight: 480, maxHeight: 900 }}>
+      <section className="relative w-full overflow-hidden" style={{ height: "100vh", minHeight: 520, maxHeight: 960 }}>
 
-        {/* Background image — fills the full viewport */}
+        {/* Background image */}
         <img
-          src="/hero-bg-new.png"
+          src="/hero-wallpaper.png"
           alt=""
-          className="absolute inset-0 w-full h-full object-cover object-bottom"
+          className="absolute inset-0 w-full h-full object-cover object-center"
           aria-hidden="true"
         />
 
-        {/* Gradient overlays — matching program section pink palette */}
+        {/* Mobile: bottom dark overlay for text readability */}
         <div
-          className="absolute inset-0 pointer-events-none"
+          className="absolute inset-0 pointer-events-none lg:hidden"
           style={{
             background:
-              "linear-gradient(to top, hsl(330,80%,15%,0.92) 0%, hsl(328,76%,28%,0.65) 40%, hsl(340,80%,38%,0.30) 70%, transparent 100%)",
-          }}
-        />
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "linear-gradient(135deg, hsl(340,80%,20%,0.35) 0%, transparent 60%)",
+              "linear-gradient(to top, rgba(100,0,40,0.90) 0%, rgba(120,0,50,0.60) 38%, rgba(100,0,40,0.15) 68%, transparent 100%)",
           }}
         />
 
-        {/* Content — centered middle */}
+        {/* Desktop: right-side gradient so text on right stays readable */}
         <div
-          className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center"
-          style={{ paddingLeft: "1rem", paddingRight: "1rem" }}
-        >
-          {/* Brand badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45 }}
-            className="flex items-center gap-2 mb-3 sm:mb-4"
-          >
-            <span
-              className="font-body font-bold uppercase text-white/90"
-              style={{ fontSize: "clamp(0.6rem, 1.2vw, 0.75rem)", letterSpacing: "0.2em" }}
-            >
-              Program Umrah
-            </span>
-          </motion.div>
+          className="absolute inset-0 pointer-events-none hidden lg:block"
+          style={{
+            background:
+              "linear-gradient(to left, rgba(90,0,35,0.88) 0%, rgba(110,0,45,0.70) 30%, rgba(100,0,40,0.30) 55%, transparent 78%)",
+          }}
+        />
+        {/* Desktop: subtle bottom fade */}
+        <div
+          className="absolute inset-0 pointer-events-none hidden lg:block"
+          style={{
+            background: "linear-gradient(to top, rgba(80,0,30,0.60) 0%, transparent 30%)",
+          }}
+        />
 
-          {/* Main title */}
-          <motion.h1
-            initial={{ opacity: 0, y: 28 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.08 }}
-            className="font-display font-black leading-[1.05] tracking-tight mb-4 sm:mb-5"
-            style={{
-              fontSize: "clamp(3rem, 12vw, 8rem)",
-              color: "rgba(255, 245, 250, 1)",
-              textShadow: "0 2px 16px rgba(140,0,60,0.5), 0 6px 40px rgba(100,0,40,0.35)",
-            }}
+        {/* ── Content ── */}
+        {/* Mobile: centered | Desktop: right-aligned */}
+        <div className="absolute inset-0 z-10 flex items-center">
+          <div
+            className="w-full flex flex-col items-center text-center lg:items-end lg:text-right"
+            style={{ padding: "0 1.25rem" }}
           >
-            Paket Umrah<br />
-            <span style={{
-              color: "rgba(255,255,255,1)",
-              textShadow: "0 0 30px rgba(255,200,230,0.9), 0 2px 16px rgba(180,0,80,0.4)",
-            }}>
-              El Massa
-            </span>
-          </motion.h1>
+            {/* Desktop wrapper — pushes content to right side */}
+            <div className="lg:max-w-lg xl:max-w-xl lg:pr-14 xl:pr-24 2xl:pr-32">
 
-          {/* Short description */}
-          <motion.p
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="font-body text-sm sm:text-base max-w-sm sm:max-w-md leading-relaxed mb-6 sm:mb-7"
-            style={{ color: "rgba(255, 230, 242, 0.90)" }}
-          >
-            Pelayanan terbaik, hotel nyaman di Makkah & Madinah, dan harga terjangkau. Berangkat dari Pangkal Pinang & Jakarta.
-          </motion.p>
+              {/* Brand badge */}
+              <motion.div
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.45 }}
+                className="flex items-center justify-center lg:justify-end gap-2 mb-3 sm:mb-4"
+              >
+                <span
+                  className="font-body font-bold uppercase text-white/85"
+                  style={{ fontSize: "clamp(0.6rem, 1.1vw, 0.72rem)", letterSpacing: "0.22em" }}
+                >
+                  Program Umrah
+                </span>
+              </motion.div>
 
-          {/* CTA buttons — compact pill style */}
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="flex items-center justify-center gap-2.5"
-          >
-            <a
-              href="#programs"
-              className="inline-flex items-center gap-1.5 px-5 py-2 rounded-full font-body font-semibold text-sm transition-all hover:scale-105 active:scale-95"
-              style={{
-                background: "rgba(255,255,255,0.95)",
-                color: "hsl(328,76%,38%)",
-                boxShadow: "0 2px 16px rgba(180,0,80,0.25)",
-              }}
-            >
-              <Play size={13} fill="hsl(328,76%,38%)" strokeWidth={0} />
-              Lihat Program
-            </a>
-            <a
-              href="https://wa.me/6281249476778?text=Assalamualaikum,%20saya%20ingin%20bertanya%20tentang%20paket%20umrah"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-5 py-2 rounded-full font-body font-semibold text-sm text-white transition-all hover:scale-105 active:scale-95"
-              style={{
-                background: "rgba(100,0,45,0.55)",
-                backdropFilter: "blur(12px)",
-                border: "1px solid rgba(255,180,215,0.35)",
-                boxShadow: "0 2px 16px rgba(100,0,45,0.30)",
-              }}
-            >
-              <Phone size={13} />
-              Hubungi Kami
-            </a>
-          </motion.div>
+              {/* Main title */}
+              <motion.h1
+                initial={{ opacity: 0, y: 28 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.08 }}
+                className="font-display font-black leading-[1.05] tracking-tight mb-4 sm:mb-5"
+                style={{
+                  fontSize: "clamp(3rem, 10vw, 7rem)",
+                  color: "rgba(255, 245, 250, 1)",
+                  textShadow: "0 2px 16px rgba(120,0,50,0.5), 0 6px 40px rgba(80,0,30,0.40)",
+                }}
+              >
+                Paket Umrah<br />
+                <span style={{
+                  color: "rgba(255,255,255,1)",
+                  textShadow: "0 0 30px rgba(255,200,230,0.85), 0 2px 16px rgba(160,0,70,0.45)",
+                }}>
+                  El Massa
+                </span>
+              </motion.h1>
+
+              {/* Short description */}
+              <motion.p
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="font-body text-sm sm:text-base lg:text-lg leading-relaxed mb-6 sm:mb-8"
+                style={{ color: "rgba(255, 228, 240, 0.92)", maxWidth: "36rem" }}
+              >
+                Pelayanan terbaik, hotel nyaman di Makkah & Madinah,<br className="hidden lg:block" /> dan harga terjangkau. Berangkat dari Pangkal Pinang & Jakarta.
+              </motion.p>
+
+              {/* CTA buttons */}
+              <motion.div
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                className="flex items-center justify-center lg:justify-end gap-3"
+              >
+                <a
+                  href="#programs"
+                  className="inline-flex items-center gap-2 rounded-full font-body font-semibold transition-all hover:scale-105 active:scale-95"
+                  style={{
+                    background: "rgba(255,255,255,0.96)",
+                    color: "hsl(328,76%,36%)",
+                    boxShadow: "0 4px 20px rgba(160,0,70,0.28)",
+                    padding: "clamp(0.5rem,1.2vw,0.75rem) clamp(1.2rem,2.5vw,1.75rem)",
+                    fontSize: "clamp(0.8rem,1.2vw,0.95rem)",
+                  }}
+                >
+                  <Play size={13} fill="hsl(328,76%,36%)" strokeWidth={0} />
+                  Lihat Program
+                </a>
+                <a
+                  href="https://wa.me/6281249476778?text=Assalamualaikum,%20saya%20ingin%20bertanya%20tentang%20paket%20umrah"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full font-body font-semibold text-white transition-all hover:scale-105 active:scale-95"
+                  style={{
+                    background: "rgba(90,0,38,0.50)",
+                    backdropFilter: "blur(14px)",
+                    border: "1.5px solid rgba(255,175,210,0.40)",
+                    boxShadow: "0 4px 20px rgba(90,0,38,0.28)",
+                    padding: "clamp(0.5rem,1.2vw,0.75rem) clamp(1.2rem,2.5vw,1.75rem)",
+                    fontSize: "clamp(0.8rem,1.2vw,0.95rem)",
+                  }}
+                >
+                  <Phone size={13} />
+                  Hubungi Kami
+                </a>
+              </motion.div>
+
+            </div>
+          </div>
         </div>
 
       </section>
