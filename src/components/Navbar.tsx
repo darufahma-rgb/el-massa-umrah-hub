@@ -13,7 +13,6 @@ const navItems = [
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -24,12 +23,6 @@ const Navbar = () => {
     document.body.style.overflow = isOpen ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
   }, [isOpen]);
-
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 40);
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   const handleNavClick = (path: string) => {
     setIsOpen(false);
@@ -42,30 +35,19 @@ const Navbar = () => {
     }
   };
 
-  const isHeroPage = location.pathname === "/";
-
   return (
     <>
       <nav
-        className="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
+        className="fixed top-0 left-0 right-0 z-50"
         style={{
-          background: scrolled
-            ? "rgba(10, 5, 18, 0.82)"
-            : "transparent",
-          backdropFilter: scrolled ? "blur(20px) saturate(180%)" : "none",
-          borderBottom: scrolled
-            ? "1px solid rgba(225, 29, 130, 0.18)"
-            : "1px solid transparent",
-          boxShadow: scrolled
-            ? "0 4px 32px rgba(0,0,0,0.28)"
-            : "none",
+          background: "rgba(10, 5, 18, 0.92)",
+          backdropFilter: "blur(20px) saturate(180%)",
+          borderBottom: "1px solid rgba(225, 29, 130, 0.18)",
+          boxShadow: "0 4px 32px rgba(0,0,0,0.28)",
         }}
       >
-        {/* Thin gradient accent line at very top when scrolled */}
-        <motion.div
-          initial={false}
-          animate={{ opacity: scrolled ? 1 : 0 }}
-          transition={{ duration: 0.4 }}
+        {/* Thin gradient accent line at very top */}
+        <div
           className="absolute top-0 left-0 right-0 h-[2px] pointer-events-none"
           style={{
             background: "linear-gradient(90deg, transparent 0%, hsl(328,76%,50%) 40%, hsl(315,72%,44%) 60%, transparent 100%)",
@@ -77,9 +59,9 @@ const Navbar = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center min-w-0 relative z-50 group">
             <img
-              src={scrolled || !isHeroPage ? "/logo-color.png" : "/logo-white.png"}
+              src="/logo-white.png"
               alt="El Massa Tour & Travel"
-              className="h-9 md:h-10 w-auto object-contain transition-all duration-300"
+              className="h-9 md:h-10 w-auto object-contain"
             />
           </Link>
 
@@ -96,9 +78,7 @@ const Navbar = () => {
                   style={{
                     color: isActive
                       ? "hsl(328, 76%, 50%)"
-                      : scrolled || !isHeroPage
-                        ? "rgba(255,255,255,0.70)"
-                        : "rgba(255,255,255,0.75)",
+                      : "rgba(255,255,255,0.75)",
                   }}
                 >
                   {isActive && (
@@ -134,8 +114,7 @@ const Navbar = () => {
           {/* Mobile hamburger */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-2 -mr-1.5 relative z-50 rounded-lg transition-colors"
-            style={{ color: scrolled || !isHeroPage ? "white" : "white" }}
+            className="lg:hidden p-2 -mr-1.5 relative z-50 rounded-lg transition-colors text-white"
             aria-label="Toggle menu"
           >
             <AnimatePresence mode="wait" initial={false}>

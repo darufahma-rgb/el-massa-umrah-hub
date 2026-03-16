@@ -3,9 +3,8 @@ import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import PosterCard from "@/components/PosterCard";
 import TrustSection from "@/components/TrustSection";
-import { ChevronRight, CalendarDays, Play, Phone, ArrowRight } from "lucide-react";
+import { CalendarDays, Play, Phone } from "lucide-react";
 import type { UmrahProgram } from "../../shared/schema";
-import { useRef } from "react";
 
 const MONTH_ORDER: Record<string, number> = {
   Januari: 1, Februari: 2, Maret: 3, April: 4,
@@ -33,58 +32,24 @@ function groupByMonth(programs: UmrahProgram[]): { month: string; items: UmrahPr
 }
 
 const ProgramRow = ({ month, programs }: { month: string; programs: UmrahProgram[] }) => {
-  const scrollRef = useRef<HTMLDivElement>(null);
-
-  const scroll = (dir: "left" | "right") => {
-    const el = scrollRef.current;
-    if (!el) return;
-    el.scrollBy({ left: dir === "right" ? 320 : -320, behavior: "smooth" });
-  };
-
   return (
     <div className="mb-10 sm:mb-12 md:mb-14">
       <div className="section-container">
-        <div className="flex items-center justify-between mb-4 sm:mb-5">
-          <div className="flex items-center gap-3">
-            <div className="w-1 h-6 rounded-full bg-primary" />
-            <div className="flex items-center gap-2.5">
-              <CalendarDays size={15} className="text-primary/70" />
-              <h2 className="font-display text-lg sm:text-xl md:text-2xl font-bold text-foreground tracking-tight">
-                {month}
-              </h2>
-              <span className="hidden sm:inline text-[10px] font-body text-muted-foreground bg-muted px-2.5 py-0.5 rounded-full border border-border/50">
-                {programs.length} program
-              </span>
-            </div>
-          </div>
-          <div className="flex items-center gap-1">
-            <button
-              onClick={() => scroll("left")}
-              className="p-1.5 rounded-full bg-card hover:bg-muted border border-border text-muted-foreground hover:text-foreground transition-all"
-              aria-label="Scroll left"
-            >
-              <ChevronRight size={14} className="rotate-180" />
-            </button>
-            <button
-              onClick={() => scroll("right")}
-              className="p-1.5 rounded-full bg-card hover:bg-muted border border-border text-muted-foreground hover:text-foreground transition-all"
-              aria-label="Scroll right"
-            >
-              <ChevronRight size={14} />
-            </button>
+        <div className="flex items-center mb-4 sm:mb-5 gap-3">
+          <div className="w-1 h-6 rounded-full bg-primary" />
+          <div className="flex items-center gap-2.5">
+            <CalendarDays size={15} className="text-primary/70" />
+            <h2 className="font-display text-lg sm:text-xl md:text-2xl font-bold text-foreground tracking-tight">
+              {month}
+            </h2>
+            <span className="hidden sm:inline text-[10px] font-body text-muted-foreground bg-muted px-2.5 py-0.5 rounded-full border border-border/50">
+              {programs.length} program
+            </span>
           </div>
         </div>
-      </div>
-      <div className="section-container">
-        <div ref={scrollRef} className="row-scroll">
+        <div className="grid grid-cols-2 gap-4 sm:gap-5">
           {programs.map((program, i) => (
-            <div
-              key={program.id}
-              className="flex-shrink-0"
-              style={{ width: "clamp(220px, 38vw, 340px)" }}
-            >
-              <PosterCard program={program} index={i} />
-            </div>
+            <PosterCard key={program.id} program={program} index={i} />
           ))}
         </div>
       </div>
@@ -166,7 +131,6 @@ const Index = () => {
             transition={{ duration: 0.45 }}
             className="flex items-center gap-2 mb-3 sm:mb-4"
           >
-            <img src="/logo-white.png" alt="El Massa" className="h-5 sm:h-6 object-contain" />
             <span
               className="font-body font-bold uppercase text-white/90"
               style={{ fontSize: "clamp(0.6rem, 1.2vw, 0.75rem)", letterSpacing: "0.2em" }}

@@ -92,15 +92,24 @@ const PosterCard = ({ program, index }: PosterCardProps) => {
             </span>
           )}
 
-          {/* Price */}
-          <div className="pt-0.5 flex items-end justify-between gap-1">
+          {/* Price — exclusive card */}
+          <div
+            className="mt-1 flex items-center justify-between gap-2 rounded-xl px-3 py-2"
+            style={{
+              background: "linear-gradient(135deg, hsl(328,76%,97%) 0%, hsl(315,72%,94%) 100%)",
+              border: "1px solid hsl(328,76%,85%)",
+            }}
+          >
             <div>
-              <p className="font-body text-[8px] text-muted-foreground uppercase tracking-widest mb-0.5">Mulai dari</p>
+              <p className="font-body text-[8px] text-primary/50 uppercase tracking-widest mb-0.5">Mulai dari</p>
               <p className="font-display text-[0.72rem] sm:text-[0.9rem] font-bold text-primary leading-none whitespace-nowrap">
                 {program.harga_mulai}
               </p>
             </div>
-            <span className="text-[9px] font-body font-medium text-primary/60 group-hover:text-primary transition-colors shrink-0">
+            <span
+              className="text-[9px] font-body font-semibold shrink-0 px-2 py-1 rounded-lg transition-colors group-hover:opacity-90"
+              style={{ background: "hsl(328,76%,50%)", color: "white" }}
+            >
               Detail →
             </span>
           </div>
