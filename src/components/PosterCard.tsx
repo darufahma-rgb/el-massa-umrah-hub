@@ -81,42 +81,32 @@ const PosterCard = ({ program, index }: PosterCardProps) => {
         </div>
       </Link>
 
-      {/* ── Price + Buttons — outside main Link ── */}
+      {/* ── Price + Cek Seat — outside main Link ── */}
       <div
-        className="mt-2 rounded-xl px-3 pt-2 pb-2.5 flex flex-col gap-2"
+        className="mt-2 rounded-xl px-3 py-2.5 flex items-center justify-between gap-2"
         style={{
           background: "linear-gradient(135deg, hsl(335,85%,97%) 0%, hsl(345,80%,94%) 100%)",
           border: "1px solid hsl(335,80%,87%)",
         }}
       >
-        {/* Price row */}
-        <div>
+        {/* Price */}
+        <div className="min-w-0">
           <p className="font-body text-[7px] text-primary/50 uppercase tracking-widest mb-0.5">Mulai dari</p>
-          <p className="font-display text-[0.78rem] font-bold text-primary leading-none">
+          <p className="font-display text-[0.78rem] font-bold text-primary leading-none truncate">
             {program.harga_mulai}
           </p>
         </div>
 
-        {/* Buttons row */}
-        <div className="flex items-center gap-1.5">
-          <Link
-            to="/update-seat"
-            className="flex-1 inline-flex items-center justify-center gap-1 text-[9px] font-body font-semibold px-2 py-1.5 rounded-lg transition-all hover:opacity-80 active:scale-95"
-            style={{ background: "rgba(225,29,130,0.10)", color: "hsl(328,76%,45%)", border: "1px solid hsl(328,76%,80%)" }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <Users size={8} />
-            Cek Seat
-          </Link>
-          <Link
-            to={`/program/${program.slug_url}`}
-            className="flex-1 inline-flex items-center justify-center text-[9px] font-body font-semibold px-2 py-1.5 rounded-lg transition-all hover:opacity-90 active:scale-95"
-            style={{ background: "hsl(328,76%,50%)", color: "white" }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            Detail →
-          </Link>
-        </div>
+        {/* Cek Seat button */}
+        <Link
+          to="/update-seat"
+          className="shrink-0 inline-flex items-center gap-1 text-[9px] font-body font-semibold px-2.5 py-1.5 rounded-lg transition-all hover:opacity-80 active:scale-95"
+          style={{ background: "rgba(225,29,130,0.10)", color: "hsl(328,76%,45%)", border: "1px solid hsl(328,76%,80%)" }}
+          onClick={(e) => e.stopPropagation()}
+        >
+          <Users size={8} />
+          Cek Seat
+        </Link>
       </div>
 
     </motion.div>
