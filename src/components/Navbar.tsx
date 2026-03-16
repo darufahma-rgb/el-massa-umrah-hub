@@ -38,17 +38,11 @@ const Navbar = () => {
   return (
     <>
       <nav
-        className="fixed top-0 left-0 right-0 z-50"
-        style={{
-          background: "rgba(15, 8, 28, 0.38)",
-          backdropFilter: "blur(24px) saturate(160%)",
-          borderBottom: "1px solid rgba(255, 255, 255, 0.10)",
-          boxShadow: "0 4px 24px rgba(0,0,0,0.18)",
-        }}
+        className="fixed top-0 left-0 right-0 z-50 navbar-glass"
       >
-        {/* Thin gradient accent line at very top */}
+        {/* Thin gradient accent line at very top — desktop only */}
         <div
-          className="absolute top-0 left-0 right-0 h-[2px] pointer-events-none"
+          className="hidden lg:block absolute top-0 left-0 right-0 h-[2px] pointer-events-none"
           style={{
             background: "linear-gradient(90deg, transparent 0%, hsl(328,76%,50%) 40%, hsl(345,80%,65%) 60%, transparent 100%)",
           }}

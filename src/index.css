@@ -289,6 +289,23 @@
     background: linear-gradient(to top, hsl(var(--background)), hsl(var(--background) / 0.95), transparent);
   }
 
+  /* Navbar: transparent on mobile, glass on desktop */
+  .navbar-glass {
+    background: transparent;
+    backdrop-filter: none;
+    border-bottom: none;
+    box-shadow: none;
+  }
+
+  @media (min-width: 1024px) {
+    .navbar-glass {
+      background: rgba(15, 8, 28, 0.38);
+      backdrop-filter: blur(24px) saturate(160%);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.18);
+    }
+  }
+
   /* Eyebrow pill label (like "DEV & DESIGN INTERNSHIP" in reference) */
   .pill-label {
     @apply inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-border text-muted-foreground;
