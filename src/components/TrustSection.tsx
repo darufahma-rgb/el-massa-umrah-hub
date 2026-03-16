@@ -41,7 +41,7 @@ const TrustSection = () => {
           className="flex flex-col items-start gap-2 mb-8 sm:mb-10"
         >
           <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-body font-medium bg-white/10 text-white/80 border border-white/15">
-            <span className="w-1.5 h-1.5 rounded-full bg-amber-400 inline-block" />
+            <span className="w-1.5 h-1.5 rounded-full bg-primary inline-block" />
             Kenapa El Massa?
           </span>
           <h2
@@ -68,7 +68,7 @@ const TrustSection = () => {
               <div className="flex items-center gap-5">
                 {/* Stat */}
                 <div className="flex-shrink-0 w-16 text-center">
-                  <p className="font-display font-extrabold text-2xl text-amber-400 leading-none">{item.stat}</p>
+                  <p className="font-display font-extrabold text-2xl text-primary leading-none">{item.stat}</p>
                   <p className="font-body text-[9px] uppercase tracking-wider text-white/50 mt-0.5">{item.statLabel}</p>
                 </div>
 
