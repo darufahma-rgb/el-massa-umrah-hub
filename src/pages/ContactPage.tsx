@@ -168,7 +168,7 @@ const ContactPage = () => {
         {/* ── Instagram ── */}
         <motion.a
           {...fadeUp(0.12)}
-          href="https://instagram.com/elmassatour"
+          href="https://instagram.com/elmassa_tour"
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center gap-4 rounded-2xl px-5 py-4 group transition-all hover:scale-[1.01]"
@@ -182,7 +182,7 @@ const ContactPage = () => {
           </div>
           <div className="flex-1">
             <p className="font-body text-[9px] uppercase tracking-widest text-muted-foreground mb-0.5">Instagram</p>
-            <p className="font-display font-bold text-foreground text-sm">@elmassatour</p>
+            <p className="font-display font-bold text-foreground text-sm">@elmassa_tour</p>
           </div>
           <ArrowRight size={16} className="text-muted-foreground group-hover:translate-x-1 transition-transform shrink-0" />
         </motion.a>
