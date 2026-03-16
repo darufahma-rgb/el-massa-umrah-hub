@@ -34,7 +34,8 @@ const PosterCard = ({ program, index }: PosterCardProps) => {
       <Link to={`/program/${program.slug_url}`} className="block">
 
         {/* ── Poster Image ── */}
-        <div className="poster-card relative mb-3">
+        <div className="card-glow rounded-2xl mb-3" style={{ borderRadius: "1rem" }}>
+        <div className="poster-card relative">
           <img
             src={program.poster_image}
             alt={program.nama_program}
@@ -60,6 +61,7 @@ const PosterCard = ({ program, index }: PosterCardProps) => {
               </span>
             </div>
           )}
+        </div>
         </div>
 
         {/* ── Info Card ── */}

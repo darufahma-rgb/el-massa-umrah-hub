@@ -180,14 +180,18 @@ const Index = () => {
             initial={{ opacity: 0, y: 28 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.08 }}
-            className="font-display font-black text-white leading-[0.86] tracking-tight mb-4 sm:mb-5"
+            className="font-display font-black leading-[0.86] tracking-tight mb-4 sm:mb-5"
             style={{
               fontSize: "clamp(3rem, 12vw, 8rem)",
-              textShadow: "0 4px 32px rgba(0,0,0,0.5)",
+              color: "rgba(255, 245, 250, 1)",
+              textShadow: "0 2px 16px rgba(140,0,60,0.5), 0 6px 40px rgba(100,0,40,0.35)",
             }}
           >
             Paket Umrah<br />
-            <span className="text-primary" style={{ textShadow: "0 2px 30px rgba(225,29,130,0.55)" }}>
+            <span style={{
+              color: "rgba(255,255,255,1)",
+              textShadow: "0 0 30px rgba(255,200,230,0.9), 0 2px 16px rgba(180,0,80,0.4)",
+            }}>
               El Massa
             </span>
           </motion.h1>
@@ -197,34 +201,44 @@ const Index = () => {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="font-body text-sm sm:text-base text-white/75 max-w-sm sm:max-w-md leading-relaxed mb-5 sm:mb-6"
+            className="font-body text-sm sm:text-base max-w-sm sm:max-w-md leading-relaxed mb-6 sm:mb-7"
+            style={{ color: "rgba(255, 230, 242, 0.90)" }}
           >
             Pelayanan terbaik, hotel nyaman di Makkah & Madinah, dan harga terjangkau. Berangkat dari Pangkal Pinang & Jakarta.
           </motion.p>
 
-          {/* CTA buttons */}
+          {/* CTA buttons — compact pill style */}
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="flex items-center justify-center gap-3"
+            className="flex items-center justify-center gap-2.5"
           >
             <a
               href="#programs"
-              className="inline-flex items-center gap-2 px-5 sm:px-7 py-2.5 sm:py-3 rounded font-body font-bold text-sm sm:text-base text-white transition-opacity hover:opacity-85 active:opacity-70"
-              style={{ background: "rgba(255,255,255,0.18)", backdropFilter: "blur(8px)", border: "1px solid rgba(255,255,255,0.28)" }}
+              className="inline-flex items-center gap-1.5 px-5 py-2 rounded-full font-body font-semibold text-sm transition-all hover:scale-105 active:scale-95"
+              style={{
+                background: "rgba(255,255,255,0.95)",
+                color: "hsl(328,76%,38%)",
+                boxShadow: "0 2px 16px rgba(180,0,80,0.25)",
+              }}
             >
-              <Play size={16} fill="white" />
+              <Play size={13} fill="hsl(328,76%,38%)" strokeWidth={0} />
               Lihat Program
             </a>
             <a
               href="https://wa.me/6281249476778?text=Assalamualaikum,%20saya%20ingin%20bertanya%20tentang%20paket%20umrah"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 sm:px-7 py-2.5 sm:py-3 rounded font-body font-bold text-sm sm:text-base text-white transition-opacity hover:opacity-90 active:opacity-75"
-              style={{ background: "#e11d82" }}
+              className="inline-flex items-center gap-1.5 px-5 py-2 rounded-full font-body font-semibold text-sm text-white transition-all hover:scale-105 active:scale-95"
+              style={{
+                background: "rgba(100,0,45,0.55)",
+                backdropFilter: "blur(12px)",
+                border: "1px solid rgba(255,180,215,0.35)",
+                boxShadow: "0 2px 16px rgba(100,0,45,0.30)",
+              }}
             >
-              <Phone size={15} />
+              <Phone size={13} />
               Hubungi Kami
             </a>
           </motion.div>
