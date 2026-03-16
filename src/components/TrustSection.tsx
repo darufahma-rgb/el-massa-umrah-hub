@@ -46,7 +46,10 @@ const trustItems = [
 
 const TrustSection = () => {
   return (
-    <section className="py-14 sm:py-16 md:py-20 border-t border-border">
+    <section
+      className="py-14 sm:py-16 md:py-20"
+      style={{ backgroundColor: "#F07088" }}
+    >
       <div className="section-container">
 
         {/* Section header */}
@@ -56,13 +59,13 @@ const TrustSection = () => {
           viewport={{ once: true }}
           className="flex flex-col items-start gap-2 mb-8 sm:mb-10"
         >
-          <span className="pill-label">
-            <span className="w-1.5 h-1.5 rounded-full bg-primary inline-block" />
+          <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-body font-medium bg-white/20 backdrop-blur-sm text-white border border-white/30">
+            <span className="w-1.5 h-1.5 rounded-full bg-white inline-block" />
             Kenapa El Massa?
           </span>
           <h2
-            className="font-display font-extrabold text-foreground tracking-tight leading-tight"
-            style={{ fontSize: "clamp(1.6rem, 4.5vw, 2.6rem)" }}
+            className="font-display font-extrabold text-white tracking-tight leading-tight"
+            style={{ fontSize: "clamp(1.6rem, 4.5vw, 2.6rem)", textShadow: "0 2px 12px rgba(0,0,0,0.15)" }}
           >
             Dipercaya, Berpengalaman,<br className="hidden sm:block" /> & Terpercaya
           </h2>
@@ -77,8 +80,8 @@ const TrustSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.08 }}
-              className="flex items-center gap-4 rounded-2xl bg-card border border-border p-4 sm:p-5"
-              style={{ boxShadow: "var(--shadow-soft)" }}
+              className="flex items-center gap-4 rounded-2xl bg-white/95 p-4 sm:p-5"
+              style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.10)" }}
             >
               {/* Stat bubble */}
               <div className={`flex-shrink-0 flex flex-col items-center justify-center rounded-xl ${item.bg} border ${item.border} w-16 h-16`}>
@@ -115,7 +118,7 @@ const TrustSection = () => {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.4 }}
-          className="font-body text-xs text-muted-foreground text-center mt-6"
+          className="font-body text-xs text-white/80 text-center mt-6"
         >
           Kami hadir memastikan setiap langkah perjalanan ibadah Anda berjalan lancar & penuh keberkahan.
         </motion.p>
