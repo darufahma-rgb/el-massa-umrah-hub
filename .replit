@@ -9,8 +9,8 @@ packages = ["unar"]
 
 [deployment]
 deploymentTarget = "autoscale"
-run = ["node", "./dist/index.cjs"]
-build = ["npm", "run", "build"]
+run = ["node", "dist-server/index.js"]
+build = ["bash", "-c", "npm run build && npm run build:server"]
 
 [workflows]
 runButton = "Project"
