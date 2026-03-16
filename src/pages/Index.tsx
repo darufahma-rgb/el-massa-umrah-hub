@@ -132,9 +132,9 @@ const Index = () => {
 
         {/* Background image — fills the full viewport */}
         <img
-          src="/hero-bg.png"
+          src="/hero-bg-new.png"
           alt=""
-          className="absolute inset-0 w-full h-full object-cover object-center"
+          className="absolute inset-0 w-full h-full object-cover object-bottom"
           aria-hidden="true"
         />
 
