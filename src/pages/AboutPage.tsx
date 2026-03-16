@@ -91,7 +91,6 @@ const AboutPage = () => {
             background: "white",
             border: "1px solid hsl(335,60%,90%)",
             boxShadow: "0 8px 40px -8px hsl(328,76%,50%,0.12)",
-            divideColor: "hsl(335,60%,92%)",
           }}
         >
           {stats.map((s, i) => (
