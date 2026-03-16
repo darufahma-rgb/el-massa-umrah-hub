@@ -138,12 +138,19 @@ const Index = () => {
           aria-hidden="true"
         />
 
-        {/* Gradient overlays */}
+        {/* Gradient overlays — matching program section pink palette */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
             background:
-              "linear-gradient(to top, rgba(8,4,12,0.95) 0%, rgba(8,4,12,0.60) 40%, rgba(8,4,12,0.25) 70%, rgba(8,4,12,0.10) 100%)",
+              "linear-gradient(to top, hsl(315,72%,18%,0.92) 0%, hsl(328,76%,28%,0.65) 40%, hsl(340,80%,38%,0.30) 70%, transparent 100%)",
+          }}
+        />
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "linear-gradient(135deg, hsl(340,80%,20%,0.35) 0%, transparent 60%)",
           }}
         />
 
