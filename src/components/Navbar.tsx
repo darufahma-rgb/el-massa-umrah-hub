@@ -56,11 +56,12 @@ const Navbar = () => {
         <div className="section-container flex items-center justify-between h-14 md:h-16">
 
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-1 min-w-0 relative z-50">
-            <span className="font-display text-xl md:text-2xl font-extrabold text-foreground tracking-tight whitespace-nowrap">
-              El Massa
-              <span className="text-primary">.</span>
-            </span>
+          <Link to="/" className="flex items-center min-w-0 relative z-50">
+            <img
+              src="/logo-color.png"
+              alt="El Massa Tour & Travel"
+              className="h-10 md:h-11 w-auto object-contain"
+            />
           </Link>
 
           {/* Desktop Nav — centered */}

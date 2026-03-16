@@ -201,12 +201,6 @@ const Index = () => {
             >
               Hubungi Kami
             </a>
-            <a
-              href="#programs"
-              className="font-body text-sm font-medium text-muted-foreground hover:text-primary transition-colors underline underline-offset-4"
-            >
-              Lihat Program
-            </a>
           </motion.div>
         </div>
       </section>
