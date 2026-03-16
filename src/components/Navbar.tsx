@@ -41,43 +41,74 @@ const Navbar = () => {
     }
   };
 
+  const isHeroPage = location.pathname === "/";
+
   return (
     <>
       <nav
-        className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+        className="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
         style={{
           background: scrolled
-            ? "hsl(var(--background) / 0.96)"
+            ? "rgba(10, 5, 18, 0.82)"
             : "transparent",
-          backdropFilter: scrolled ? "blur(16px)" : "none",
-          borderBottom: scrolled ? "1px solid hsl(var(--border))" : "1px solid transparent",
+          backdropFilter: scrolled ? "blur(20px) saturate(180%)" : "none",
+          borderBottom: scrolled
+            ? "1px solid rgba(225, 29, 130, 0.18)"
+            : "1px solid transparent",
+          boxShadow: scrolled
+            ? "0 4px 32px rgba(0,0,0,0.28)"
+            : "none",
         }}
       >
-        <div className="section-container flex items-center justify-between h-14 md:h-16">
+        {/* Thin gradient accent line at very top when scrolled */}
+        <motion.div
+          initial={false}
+          animate={{ opacity: scrolled ? 1 : 0 }}
+          transition={{ duration: 0.4 }}
+          className="absolute top-0 left-0 right-0 h-[2px] pointer-events-none"
+          style={{
+            background: "linear-gradient(90deg, transparent 0%, hsl(328,76%,50%) 40%, hsl(315,72%,44%) 60%, transparent 100%)",
+          }}
+        />
+
+        <div className="section-container flex items-center justify-between h-15 md:h-17" style={{ height: "3.75rem" }}>
 
           {/* Logo */}
-          <Link to="/" className="flex items-center min-w-0 relative z-50">
+          <Link to="/" className="flex items-center min-w-0 relative z-50 group">
             <img
-              src="/logo-color.png"
+              src={scrolled || !isHeroPage ? "/logo-color.png" : "/logo-white.png"}
               alt="El Massa Tour & Travel"
-              className="h-10 md:h-11 w-auto object-contain"
+              className="h-9 md:h-10 w-auto object-contain transition-all duration-300"
             />
           </Link>
 
-          {/* Desktop Nav — centered */}
-          <div className="hidden lg:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
+          {/* Desktop Nav — centered with pill active indicator */}
+          <div className="hidden lg:flex items-center gap-1 absolute left-1/2 -translate-x-1/2">
             {navItems.map((item) => {
-              const isHome = item.path === "/" && location.pathname === "/";
+              const isActive = item.path === "/" && location.pathname === "/";
               return (
                 <Link
                   key={item.path}
                   to={item.path.includes("#") ? "/" : item.path}
                   onClick={() => handleNavClick(item.path)}
-                  className={`font-body text-sm font-medium transition-colors whitespace-nowrap ${
-                    isHome ? "text-primary" : "text-foreground/60 hover:text-foreground"
-                  }`}
+                  className="relative px-4 py-1.5 font-body text-sm font-medium transition-colors duration-200 rounded-full whitespace-nowrap"
+                  style={{
+                    color: isActive
+                      ? "hsl(328, 76%, 50%)"
+                      : scrolled || !isHeroPage
+                        ? "rgba(255,255,255,0.70)"
+                        : "rgba(255,255,255,0.75)",
+                  }}
                 >
-                  {item.label}
+                  {isActive && (
+                    <motion.span
+                      layoutId="nav-pill"
+                      className="absolute inset-0 rounded-full"
+                      style={{ background: "rgba(225,29,130,0.12)", border: "1px solid rgba(225,29,130,0.25)" }}
+                      transition={{ type: "spring", bounce: 0.2, duration: 0.5 }}
+                    />
+                  )}
+                  <span className="relative z-10">{item.label}</span>
                 </Link>
               );
             })}
@@ -89,7 +120,11 @@ const Navbar = () => {
               href="https://wa.me/6281249476778?text=Assalamualaikum,%20saya%20ingin%20booking%20program%20umrah"
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-booking !py-2 !px-5 text-sm"
+              className="inline-flex items-center gap-2 font-body font-semibold text-sm text-white px-5 py-2 rounded-full transition-all duration-200 hover:opacity-90 hover:-translate-y-px active:scale-95"
+              style={{
+                background: "linear-gradient(135deg, hsl(328,76%,50%), hsl(315,72%,44%))",
+                boxShadow: "0 2px 16px hsl(328,76%,50%,0.35)",
+              }}
             >
               Booking Now
             </a>
@@ -98,7 +133,8 @@ const Navbar = () => {
           {/* Mobile hamburger */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-2 -mr-2 text-foreground relative z-50"
+            className="lg:hidden p-2 -mr-1.5 relative z-50 rounded-lg transition-colors"
+            style={{ color: scrolled || !isHeroPage ? "white" : "white" }}
             aria-label="Toggle menu"
           >
             <AnimatePresence mode="wait" initial={false}>
@@ -108,7 +144,7 @@ const Navbar = () => {
                   initial={{ rotate: -90, opacity: 0 }}
                   animate={{ rotate: 0, opacity: 1 }}
                   exit={{ rotate: 90, opacity: 0 }}
-                  transition={{ duration: 0.2 }}
+                  transition={{ duration: 0.18 }}
                 >
                   <X size={22} />
                 </motion.div>
@@ -118,7 +154,7 @@ const Navbar = () => {
                   initial={{ rotate: 90, opacity: 0 }}
                   animate={{ rotate: 0, opacity: 1 }}
                   exit={{ rotate: -90, opacity: 0 }}
-                  transition={{ duration: 0.2 }}
+                  transition={{ duration: 0.18 }}
                 >
                   <Menu size={22} />
                 </motion.div>
@@ -128,66 +164,88 @@ const Navbar = () => {
         </div>
       </nav>
 
-      {/* Full-screen Mobile Menu */}
+      {/* Full-screen Mobile Menu — slides from right */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div
-            initial={{ x: "-100%" }}
-            animate={{ x: 0 }}
-            exit={{ x: "-100%" }}
-            transition={{ type: "tween", duration: 0.35, ease: [0.32, 0.72, 0, 1] }}
-            className="lg:hidden fixed inset-0 z-40 flex flex-col"
-            style={{ background: "hsl(var(--background))" }}
-          >
-            {/* Top fade overlay */}
-            <div className="h-14 md:h-16 flex-shrink-0" />
+          <>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.25 }}
+              className="lg:hidden fixed inset-0 z-30"
+              style={{ background: "rgba(0,0,0,0.55)", backdropFilter: "blur(4px)" }}
+              onClick={() => setIsOpen(false)}
+            />
 
-            <div className="flex flex-col justify-between flex-1 section-container py-10">
+            {/* Drawer panel */}
+            <motion.div
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "tween", duration: 0.32, ease: [0.32, 0.72, 0, 1] }}
+              className="lg:hidden fixed top-0 right-0 bottom-0 z-40 w-72 flex flex-col"
+              style={{
+                background: "rgba(10, 5, 18, 0.96)",
+                backdropFilter: "blur(24px)",
+                borderLeft: "1px solid rgba(225,29,130,0.18)",
+              }}
+            >
+              {/* Gradient accent line at top */}
+              <div
+                className="absolute top-0 left-0 right-0 h-[2px]"
+                style={{ background: "linear-gradient(90deg, transparent, hsl(328,76%,50%), hsl(315,72%,44%))" }}
+              />
 
-              {/* Nav links */}
-              <nav className="flex flex-col gap-1">
-                {navItems.map((item, i) => (
-                  <motion.div
-                    key={item.path}
-                    initial={{ opacity: 0, x: -40 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.05 + i * 0.07, duration: 0.35, ease: "easeOut" }}
-                  >
-                    <Link
-                      to={item.path.includes("#") ? "/" : item.path}
-                      onClick={() => handleNavClick(item.path)}
-                      className="font-display text-3xl font-bold text-foreground/80 hover:text-primary py-3 block transition-colors"
+              <div className="flex flex-col h-full pt-20 pb-8 px-7">
+
+                {/* Nav links */}
+                <nav className="flex flex-col gap-0.5 flex-1">
+                  {navItems.map((item, i) => (
+                    <motion.div
+                      key={item.path}
+                      initial={{ opacity: 0, x: 32 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.06 + i * 0.07, duration: 0.32, ease: "easeOut" }}
                     >
-                      {item.label}
-                    </Link>
-                  </motion.div>
-                ))}
-              </nav>
+                      <Link
+                        to={item.path.includes("#") ? "/" : item.path}
+                        onClick={() => handleNavClick(item.path)}
+                        className="font-display text-2xl font-bold text-white/75 hover:text-white py-3 block transition-colors"
+                      >
+                        {item.label}
+                      </Link>
+                    </motion.div>
+                  ))}
+                </nav>
 
-              {/* Bottom CTA */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.35, duration: 0.35 }}
-                className="flex flex-col gap-3 pb-safe"
-              >
-                <a
-                  href="https://wa.me/6281249476778?text=Assalamualaikum,%20saya%20ingin%20booking%20program%20umrah"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-booking text-center justify-center gap-2 text-base"
-                  onClick={() => setIsOpen(false)}
+                {/* Bottom CTA */}
+                <motion.div
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.32, duration: 0.32 }}
+                  className="flex flex-col gap-3"
                 >
-                  <Phone size={16} />
-                  Hubungi & Booking
-                </a>
-                <p className="font-body text-xs text-muted-foreground text-center">
-                  El Massa Tour & Travel · 2026
-                </p>
-              </motion.div>
+                  <a
+                    href="https://wa.me/6281249476778?text=Assalamualaikum,%20saya%20ingin%20booking%20program%20umrah"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 font-body font-bold text-sm text-white px-5 py-3 rounded-full transition-all hover:opacity-90"
+                    style={{ background: "linear-gradient(135deg, hsl(328,76%,50%), hsl(315,72%,44%))", boxShadow: "0 4px 20px hsl(328,76%,50%,0.35)" }}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    <Phone size={15} />
+                    Hubungi & Booking
+                  </a>
+                  <p className="font-body text-[10px] text-white/30 text-center">
+                    El Massa Tour & Travel · 2026
+                  </p>
+                </motion.div>
 
-            </div>
-          </motion.div>
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </>
