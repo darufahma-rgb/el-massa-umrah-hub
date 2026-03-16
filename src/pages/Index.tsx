@@ -162,13 +162,13 @@ const Index = () => {
                 style={{
                   fontSize: "clamp(3rem, 10vw, 7rem)",
                   color: "rgba(255, 245, 250, 1)",
-                  textShadow: "0 2px 16px rgba(120,0,50,0.5), 0 6px 40px rgba(80,0,30,0.40)",
+                  textShadow: "0 1px 6px rgba(120,0,50,0.25)",
                 }}
               >
                 Paket Umrah<br />
                 <span style={{
                   color: "rgba(255,255,255,1)",
-                  textShadow: "0 0 30px rgba(255,200,230,0.85), 0 2px 16px rgba(160,0,70,0.45)",
+                  textShadow: "0 1px 6px rgba(160,0,70,0.20)",
                 }}>
                   El Massa
                 </span>
