@@ -92,61 +92,98 @@ const ProgramDetail = () => {
 
   return (
     <main className="min-h-screen bg-background pb-20 md:pb-8">
-      {/* Hero */}
-      <section className="relative h-[50vh] sm:h-[55vh] md:h-[62vh] overflow-hidden">
-        <img src={program.poster_image} alt={program.nama_program} className="absolute inset-0 w-full h-full object-cover" />
-        <div className="hero-gradient absolute inset-0" />
-        <div className="absolute top-3 left-3 sm:top-4 sm:left-4 z-10 pt-14 md:pt-16">
-          <Link to="/" className="inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-card/60 backdrop-blur-sm text-foreground text-xs sm:text-sm font-body hover:bg-card/80 transition-colors border border-border/40">
-            <ArrowLeft size={14} />
-            Kembali
-          </Link>
-        </div>
-        <div className="relative h-full flex flex-col justify-end section-container pb-8 sm:pb-10">
-          <motion.span
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="inline-block self-start px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full text-[10px] sm:text-xs font-body font-semibold bg-primary text-primary-foreground mb-2 sm:mb-3"
-          >
-            {program.bulan_keberangkatan}
-          </motion.span>
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
+
+      {/* ── Top: Poster + Info side by side ── */}
+      <section className="section-container pt-20 md:pt-24 pb-8">
+
+        {/* Back button */}
+        <Link
+          to="/"
+          className="inline-flex items-center gap-1.5 mb-5 px-3 py-1.5 rounded-full bg-card border border-border text-foreground text-xs font-body hover:bg-muted transition-colors"
+        >
+          <ArrowLeft size={13} />
+          Kembali
+        </Link>
+
+        <div className="flex gap-5 sm:gap-7 md:gap-10 items-start">
+
+          {/* Poster image — portrait aspect ratio */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-1 sm:mb-2"
+            transition={{ duration: 0.4 }}
+            className="flex-shrink-0"
+            style={{ width: "clamp(110px, 32vw, 220px)" }}
           >
-            {program.nama_program}
-          </motion.h1>
-          <p className="font-body text-foreground/60 text-xs sm:text-sm md:text-base max-w-lg">
-            {program.subtitle}
-          </p>
+            <div
+              className="relative overflow-hidden rounded-2xl"
+              style={{
+                aspectRatio: "1441 / 2495",
+                boxShadow: "0 8px 40px -8px hsl(328 76% 50% / 0.25), 0 0 0 2px white",
+              }}
+            >
+              <img
+                src={program.poster_image}
+                alt={program.nama_program}
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+            </div>
+          </motion.div>
+
+          {/* Info — outside the poster */}
+          <motion.div
+            initial={{ opacity: 0, x: 16 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.45, delay: 0.1 }}
+            className="flex-1 min-w-0 flex flex-col gap-3 pt-1"
+          >
+            {/* Badge */}
+            <span className="inline-block self-start px-2.5 py-0.5 rounded-full text-[10px] font-body font-semibold bg-primary text-primary-foreground">
+              {program.bulan_keberangkatan}
+            </span>
+
+            {/* Title */}
+            <h1
+              className="font-display font-extrabold text-foreground leading-tight tracking-tight"
+              style={{ fontSize: "clamp(1.2rem, 5vw, 2.5rem)" }}
+            >
+              {program.nama_program}
+            </h1>
+
+            {/* Subtitle */}
+            {program.subtitle && (
+              <p className="font-body text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                {program.subtitle}
+              </p>
+            )}
+
+            {/* Quick stats */}
+            <div className="flex flex-col gap-1.5 mt-1">
+              {[
+                { icon: Clock, label: program.durasi_hari },
+                { icon: MapPin, label: program.kota_keberangkatan },
+                { icon: Plane, label: program.maskapai },
+              ].map(({ icon: Icon, label }) => (
+                <div key={label} className="flex items-center gap-2">
+                  <Icon size={12} className="text-primary shrink-0" />
+                  <span className="font-body text-[11px] sm:text-xs text-foreground/70 leading-snug">{label}</span>
+                </div>
+              ))}
+            </div>
+
+            {/* Price */}
+            <div className="mt-1 pt-3 border-t border-border">
+              <p className="font-body text-[9px] uppercase tracking-widest text-muted-foreground mb-0.5">Mulai dari</p>
+              <p className="font-display font-extrabold text-primary" style={{ fontSize: "clamp(1.1rem, 4vw, 1.6rem)" }}>
+                {program.harga_mulai}
+              </p>
+            </div>
+          </motion.div>
+
         </div>
       </section>
 
       <div className="section-container">
-        {/* Quick Info */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          className="glass-card -mt-6 sm:-mt-8 relative z-10 grid grid-cols-3 gap-2 sm:gap-4 text-center"
-        >
-          <div>
-            <Calendar size={16} className="mx-auto text-primary mb-0.5 sm:mb-1 sm:w-5 sm:h-5" />
-            <p className="font-body text-[10px] sm:text-xs text-muted-foreground">Bulan</p>
-            <p className="font-display text-[11px] sm:text-sm font-semibold text-foreground">{program.bulan_keberangkatan}</p>
-          </div>
-          <div>
-            <Clock size={16} className="mx-auto text-primary mb-0.5 sm:mb-1 sm:w-5 sm:h-5" />
-            <p className="font-body text-[10px] sm:text-xs text-muted-foreground">Durasi</p>
-            <p className="font-display text-[11px] sm:text-sm font-semibold text-foreground">{program.durasi_hari}</p>
-          </div>
-          <div>
-            <MapPin size={16} className="mx-auto text-primary mb-0.5 sm:mb-1 sm:w-5 sm:h-5" />
-            <p className="font-body text-[10px] sm:text-xs text-muted-foreground">Keberangkatan</p>
-            <p className="font-display text-[11px] sm:text-sm font-semibold text-foreground leading-tight">{program.kota_keberangkatan}</p>
-          </div>
-        </motion.div>
 
         {/* Highlights */}
         <motion.section initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mt-8 sm:mt-10">

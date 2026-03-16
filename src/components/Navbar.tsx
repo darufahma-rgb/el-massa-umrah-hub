@@ -66,16 +66,21 @@ const Navbar = () => {
 
           {/* Desktop Nav — centered */}
           <div className="hidden lg:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
-            {navItems.map((item) => (
-              <Link
-                key={item.path}
-                to={item.path.includes("#") ? "/" : item.path}
-                onClick={() => handleNavClick(item.path)}
-                className="font-body text-sm font-medium text-foreground/60 hover:text-foreground transition-colors whitespace-nowrap"
-              >
-                {item.label}
-              </Link>
-            ))}
+            {navItems.map((item) => {
+              const isHome = item.path === "/" && location.pathname === "/";
+              return (
+                <Link
+                  key={item.path}
+                  to={item.path.includes("#") ? "/" : item.path}
+                  onClick={() => handleNavClick(item.path)}
+                  className={`font-body text-sm font-medium transition-colors whitespace-nowrap ${
+                    isHome ? "text-primary" : "text-foreground/60 hover:text-foreground"
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
           </div>
 
           {/* Desktop CTA */}
