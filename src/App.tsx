@@ -12,6 +12,7 @@ import ProgramDetail from "./pages/ProgramDetail.tsx";
 import AboutPage from "./pages/AboutPage.tsx";
 import ContactPage from "./pages/ContactPage.tsx";
 import NotFound from "./pages/NotFound.tsx";
+import UpdateSeat from "./pages/UpdateSeat.tsx";
 
 const queryClient = new QueryClient();
 
@@ -28,6 +29,7 @@ const App = () => (
             <Route path="/program/:slug" element={<ProgramDetail />} />
             <Route path="/tentang" element={<AboutPage />} />
             <Route path="/kontak" element={<ContactPage />} />
+            <Route path="/update-seat" element={<UpdateSeat />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           <Footer />

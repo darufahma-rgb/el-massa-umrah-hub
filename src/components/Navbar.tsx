@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 const navItems = [
   { label: "Home", path: "/" },
   { label: "Program Umrah", path: "/#programs" },
+  { label: "Update Seat", path: "/update-seat" },
   { label: "Tentang Kami", path: "/tentang" },
   { label: "Kontak", path: "/kontak" },
 ];
