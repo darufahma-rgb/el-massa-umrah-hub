@@ -174,17 +174,6 @@ const Index = () => {
                 </span>
               </motion.h1>
 
-              {/* Short description */}
-              <motion.p
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                className="font-body text-sm sm:text-base lg:text-lg leading-relaxed mb-6 sm:mb-8"
-                style={{ color: "rgba(255, 228, 240, 0.92)", maxWidth: "36rem" }}
-              >
-                Pelayanan terbaik, hotel nyaman di Makkah & Madinah,<br className="hidden lg:block" /> dan harga terjangkau. Berangkat dari Pangkal Pinang & Jakarta.
-              </motion.p>
-
               {/* CTA buttons */}
               <motion.div
                 initial={{ opacity: 0, y: 12 }}
