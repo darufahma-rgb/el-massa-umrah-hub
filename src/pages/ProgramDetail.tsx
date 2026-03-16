@@ -3,10 +3,10 @@ import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
 import type { UmrahProgram } from "../../shared/schema";
 import {
-  Calendar, Clock, MapPin, Building2, Plane, Star, Check, X,
+  Clock, MapPin, Building2, Plane, Star, Check, X,
   CreditCard, MessageCircle, ArrowLeft, Train, ChevronDown, ChevronUp
 } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const facilityIcons: Record<string, React.ReactNode> = {
   "Tiket Pesawat": <Plane size={16} />,
@@ -56,6 +56,16 @@ interface BankAccount {
 const ProgramDetail = () => {
   const { slug } = useParams();
   const [notesOpen, setNotesOpen] = useState(false);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+
+  useEffect(() => {
+    if (lightboxOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => { document.body.style.overflow = ""; };
+  }, [lightboxOpen]);
 
   const { data: program, isLoading } = useQuery<UmrahProgram>({
     queryKey: ["umrah-program", slug],
@@ -107,7 +117,7 @@ const ProgramDetail = () => {
 
         <div className="flex gap-5 sm:gap-7 md:gap-10 items-start">
 
-          {/* Poster image — portrait aspect ratio */}
+          {/* Poster image — portrait aspect ratio, clickable */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
@@ -115,19 +125,30 @@ const ProgramDetail = () => {
             className="flex-shrink-0"
             style={{ width: "clamp(110px, 32vw, 220px)" }}
           >
-            <div
-              className="relative overflow-hidden rounded-2xl"
-              style={{
-                aspectRatio: "1441 / 2495",
-                boxShadow: "0 8px 40px -8px hsl(328 76% 50% / 0.25), 0 0 0 2px white",
-              }}
+            <button
+              onClick={() => setLightboxOpen(true)}
+              className="block w-full focus:outline-none group"
+              aria-label="Lihat poster lebih besar"
             >
-              <img
-                src={program.poster_image}
-                alt={program.nama_program}
-                className="absolute inset-0 w-full h-full object-cover"
-              />
-            </div>
+              <div
+                className="relative overflow-hidden rounded-2xl transition-transform duration-200 group-hover:scale-[1.02] group-active:scale-[0.98]"
+                style={{
+                  aspectRatio: "1441 / 2495",
+                  boxShadow: "0 8px 40px -8px hsl(328 76% 50% / 0.25), 0 0 0 2px white",
+                }}
+              >
+                <img
+                  src={program.poster_image}
+                  alt={program.nama_program}
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-200 flex items-end justify-center pb-3">
+                  <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-200 text-[10px] font-body text-white bg-black/50 px-2 py-0.5 rounded-full">
+                    Tap untuk perbesar
+                  </span>
+                </div>
+              </div>
+            </button>
           </motion.div>
 
           {/* Info — outside the poster */}
@@ -295,22 +316,42 @@ const ProgramDetail = () => {
           </motion.section>
         )}
 
-        {/* Desktop CTA */}
-        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mt-10 sm:mt-12 hidden md:block text-center">
-          <a href={waLink} target="_blank" rel="noopener noreferrer" className="btn-booking text-base lg:text-lg">
-            <MessageCircle size={20} />
+        {/* CTA */}
+        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mt-10 sm:mt-12">
+          <a href={waLink} target="_blank" rel="noopener noreferrer" className="btn-booking w-full justify-center text-sm sm:text-base">
+            <MessageCircle size={18} />
             Booking via WhatsApp
           </a>
         </motion.div>
       </div>
 
-      {/* Sticky Mobile CTA */}
-      <div className="sticky-cta md:hidden">
-        <a href={waLink} target="_blank" rel="noopener noreferrer" className="btn-booking w-full text-center text-sm">
-          <MessageCircle size={18} />
-          Booking via WhatsApp
-        </a>
-      </div>
+      {/* Lightbox */}
+      {lightboxOpen && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4"
+          onClick={() => setLightboxOpen(false)}
+        >
+          <button
+            onClick={() => setLightboxOpen(false)}
+            className="absolute top-4 right-4 w-9 h-9 flex items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors"
+            aria-label="Tutup"
+          >
+            <X size={20} />
+          </button>
+          <motion.img
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.25 }}
+            src={program.poster_image}
+            alt={program.nama_program}
+            className="max-h-[90vh] max-w-full object-contain rounded-xl"
+            onClick={(e) => e.stopPropagation()}
+          />
+        </motion.div>
+      )}
     </main>
   );
 };
