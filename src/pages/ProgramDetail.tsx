@@ -74,9 +74,15 @@ const ProgramDetail = () => {
   const { data: program, isLoading } = useQuery<UmrahProgram>({
     queryKey: ["umrah-program", slug],
     queryFn: async () => {
-      const res = await fetch(`/api/programs/${slug}`);
-      if (!res.ok) throw new Error("Program not found");
-      return res.json();
+      const { data, error } = await supabase
+        .from("umrah_programs")
+        .select("*")
+        .eq("slug_url", slug!)
+        .eq("is_active", true)
+        .maybeSingle();
+      if (error) throw error;
+      if (!data) throw new Error("Program not found");
+      return data;
     },
     enabled: !!slug,
   });

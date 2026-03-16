@@ -84,9 +84,13 @@ const Index = () => {
   const { data: programs, isLoading } = useQuery<UmrahProgram[]>({
     queryKey: ["umrah-programs"],
     queryFn: async () => {
-      const res = await fetch("/api/programs");
-      if (!res.ok) throw new Error("Failed to fetch programs");
-      return res.json();
+      const { data, error } = await supabase
+        .from("umrah_programs")
+        .select("*")
+        .eq("is_active", true)
+        .order("sort_order", { ascending: true });
+      if (error) throw error;
+      return data;
     },
   });
 
