@@ -50,7 +50,7 @@ const Navbar = () => {
         <div
           className="absolute top-0 left-0 right-0 h-[2px] pointer-events-none"
           style={{
-            background: "linear-gradient(90deg, transparent 0%, hsl(328,76%,50%) 40%, hsl(315,72%,44%) 60%, transparent 100%)",
+            background: "linear-gradient(90deg, transparent 0%, hsl(328,76%,50%) 40%, hsl(345,80%,65%) 60%, transparent 100%)",
           }}
         />
 
@@ -103,7 +103,7 @@ const Navbar = () => {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 font-body font-semibold text-sm text-white px-5 py-2 rounded-full transition-all duration-200 hover:opacity-90 hover:-translate-y-px active:scale-95"
               style={{
-                background: "linear-gradient(135deg, hsl(328,76%,50%), hsl(315,72%,44%))",
+                background: "linear-gradient(135deg, hsl(328,76%,50%), hsl(345,80%,65%))",
                 boxShadow: "0 2px 16px hsl(328,76%,50%,0.35)",
               }}
             >
@@ -175,7 +175,7 @@ const Navbar = () => {
               {/* Gradient accent line at top */}
               <div
                 className="absolute top-0 left-0 right-0 h-[2px]"
-                style={{ background: "linear-gradient(90deg, transparent, hsl(328,76%,50%), hsl(315,72%,44%))" }}
+                style={{ background: "linear-gradient(90deg, transparent, hsl(328,76%,50%), hsl(345,80%,65%))" }}
               />
 
               <div className="flex flex-col h-full pt-20 pb-8 px-7">
@@ -212,7 +212,7 @@ const Navbar = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center justify-center gap-2 font-body font-bold text-sm text-white px-5 py-3 rounded-full transition-all hover:opacity-90"
-                    style={{ background: "linear-gradient(135deg, hsl(328,76%,50%), hsl(315,72%,44%))", boxShadow: "0 4px 20px hsl(328,76%,50%,0.35)" }}
+                    style={{ background: "linear-gradient(135deg, hsl(328,76%,50%), hsl(345,80%,65%))", boxShadow: "0 4px 20px hsl(328,76%,50%,0.35)" }}
                     onClick={() => setIsOpen(false)}
                   >
                     <Phone size={15} />

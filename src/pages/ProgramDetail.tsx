@@ -197,17 +197,37 @@ const ProgramDetail = () => {
 
         </div>
 
-        {/* Price — centered below poster + info */}
+        {/* Price — exclusive card below poster + info */}
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.25 }}
-          className="mt-5 text-center"
+          className="mt-5"
         >
-          <p className="font-body text-[9px] uppercase tracking-widest text-muted-foreground mb-0.5">Mulai dari</p>
-          <p className="font-display font-extrabold text-primary" style={{ fontSize: "clamp(1.4rem, 5vw, 2rem)" }}>
-            {program.harga_mulai}
-          </p>
+          <div
+            className="rounded-2xl px-5 py-4 flex items-center justify-between gap-4"
+            style={{
+              background: "linear-gradient(135deg, hsl(335,85%,97%) 0%, hsl(345,80%,93%) 100%)",
+              border: "1px solid hsl(335,80%,85%)",
+              boxShadow: "0 4px 20px -4px hsl(328,76%,50%,0.15)",
+            }}
+          >
+            <div>
+              <p className="font-body text-[9px] uppercase tracking-widest text-primary/50 mb-1">Mulai dari</p>
+              <p className="font-display font-extrabold text-primary" style={{ fontSize: "clamp(1.4rem, 5vw, 2rem)" }}>
+                {program.harga_mulai}
+              </p>
+            </div>
+            <a
+              href={waLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 font-body font-bold text-xs text-white rounded-xl px-4 py-2.5 transition-all hover:opacity-90 active:scale-95 shrink-0"
+              style={{ background: "linear-gradient(135deg, hsl(335,85%,55%), hsl(345,80%,65%))", boxShadow: "0 4px 14px -2px hsl(328,76%,50%,0.35)" }}
+            >
+              Booking Sekarang
+            </a>
+          </div>
         </motion.div>
 
       </section>

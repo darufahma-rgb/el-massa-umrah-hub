@@ -38,7 +38,7 @@ const SeatCard = ({ program, index }: { program: UmrahProgram; index: number }) 
       {/* Card header — pink gradient */}
       <div
         className="px-4 py-3 flex items-start justify-between gap-3"
-        style={{ background: "linear-gradient(135deg, hsl(340,80%,52%) 0%, hsl(315,72%,44%) 100%)" }}
+        style={{ background: "linear-gradient(135deg, hsl(340,80%,52%) 0%, hsl(345,80%,65%) 100%)" }}
       >
         <div>
           <p className="font-body text-[10px] font-semibold uppercase tracking-widest text-white/70 mb-0.5">
@@ -157,7 +157,7 @@ const SeatCard = ({ program, index }: { program: UmrahProgram; index: number }) 
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1 font-body text-[10px] font-bold text-white rounded-full px-3 py-1 transition-opacity hover:opacity-90"
-              style={{ background: "linear-gradient(135deg, hsl(328,76%,50%), hsl(315,72%,44%))" }}
+              style={{ background: "linear-gradient(135deg, hsl(328,76%,50%), hsl(345,80%,65%))" }}
             >
               <Phone size={9} />
               Booking
@@ -200,7 +200,7 @@ const UpdateSeat = () => {
       {/* ── Header ── */}
       <div
         className="pt-20 pb-10 sm:pt-24 sm:pb-12 text-center"
-        style={{ background: "linear-gradient(135deg, hsl(340,80%,58%) 0%, hsl(328,76%,50%) 50%, hsl(315,72%,44%) 100%)" }}
+        style={{ background: "linear-gradient(135deg, hsl(340,80%,58%) 0%, hsl(328,76%,50%) 50%, hsl(345,80%,65%) 100%)" }}
       >
         <div className="section-container">
           <motion.div
@@ -269,7 +269,7 @@ const UpdateSeat = () => {
         >
           <div
             className="inline-flex flex-col sm:flex-row items-center gap-3 sm:gap-6 px-6 sm:px-10 py-5 rounded-2xl"
-            style={{ background: "linear-gradient(135deg, hsl(340,80%,58%) 0%, hsl(315,72%,44%) 100%)" }}
+            style={{ background: "linear-gradient(135deg, hsl(340,80%,58%) 0%, hsl(345,80%,65%) 100%)" }}
           >
             <div className="text-white text-center sm:text-left">
               <p className="font-display font-bold text-base sm:text-lg">Hubungi El Massa Tour Sekarang!</p>
