@@ -148,51 +148,50 @@ const Navbar = () => {
       <AnimatePresence>
         {isOpen && (
           <>
-            {/* Backdrop */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.25 }}
-              className="lg:hidden fixed inset-0 z-30"
-              style={{ background: "rgba(0,0,0,0.55)", backdropFilter: "blur(4px)" }}
-              onClick={() => setIsOpen(false)}
-            />
 
-            {/* Drawer panel */}
+            {/* Full-screen panel */}
             <motion.div
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100%" }}
-              transition={{ type: "tween", duration: 0.32, ease: [0.32, 0.72, 0, 1] }}
-              className="lg:hidden fixed top-0 right-0 bottom-0 z-40 w-72 flex flex-col"
-              style={{
-                background: "rgba(10, 5, 18, 0.96)",
-                backdropFilter: "blur(24px)",
-                borderLeft: "1px solid rgba(225,29,130,0.18)",
-              }}
+              initial={{ opacity: 0, y: -16 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -16 }}
+              transition={{ type: "tween", duration: 0.28, ease: "easeOut" }}
+              className="lg:hidden fixed inset-0 z-40 flex flex-col"
+              style={{ background: "hsl(25, 40%, 18%)" }}
             >
-              {/* Gradient accent line at top */}
+              {/* Top accent line */}
               <div
                 className="absolute top-0 left-0 right-0 h-[2px]"
                 style={{ background: "linear-gradient(90deg, transparent, hsl(328,76%,50%), hsl(345,80%,65%))" }}
               />
 
-              <div className="flex flex-col h-full pt-20 pb-8 px-7">
+              {/* Close button */}
+              <div className="flex items-center justify-between px-6 pt-5 pb-4">
+                <img src="/logo-white.png" alt="El Massa" className="h-8 object-contain opacity-80" />
+                <button
+                  onClick={() => setIsOpen(false)}
+                  className="w-9 h-9 flex items-center justify-center rounded-full text-white/70 hover:text-white transition-colors"
+                  style={{ background: "rgba(255,255,255,0.08)" }}
+                  aria-label="Tutup menu"
+                >
+                  <X size={20} />
+                </button>
+              </div>
 
+              <div className="flex flex-col flex-1 px-6 pb-10 overflow-y-auto">
                 {/* Nav links */}
-                <nav className="flex flex-col gap-0.5 flex-1">
+                <nav className="flex flex-col mt-6 flex-1">
                   {navItems.map((item, i) => (
                     <motion.div
                       key={item.path}
-                      initial={{ opacity: 0, x: 32 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.06 + i * 0.07, duration: 0.32, ease: "easeOut" }}
+                      initial={{ opacity: 0, y: 16 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.04 + i * 0.06, duration: 0.28, ease: "easeOut" }}
                     >
                       <Link
                         to={item.path.includes("#") ? "/" : item.path}
                         onClick={() => handleNavClick(item.path)}
-                        className="font-display text-2xl font-bold text-white/75 hover:text-white py-3 block transition-colors"
+                        className="font-display text-3xl font-bold text-white/80 hover:text-white py-4 block transition-colors border-b"
+                        style={{ borderColor: "rgba(255,255,255,0.08)" }}
                       >
                         {item.label}
                       </Link>
@@ -204,14 +203,14 @@ const Navbar = () => {
                 <motion.div
                   initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.32, duration: 0.32 }}
-                  className="flex flex-col gap-3"
+                  transition={{ delay: 0.38, duration: 0.3 }}
+                  className="flex flex-col gap-3 mt-10"
                 >
                   <a
                     href="https://wa.me/6281249476778?text=Assalamualaikum,%20saya%20ingin%20booking%20program%20umrah"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 font-body font-bold text-sm text-white px-5 py-3 rounded-full transition-all hover:opacity-90"
+                    className="inline-flex items-center justify-center gap-2 font-body font-bold text-sm text-white px-5 py-3.5 rounded-full transition-all hover:opacity-90"
                     style={{ background: "linear-gradient(135deg, hsl(328,76%,50%), hsl(345,80%,65%))", boxShadow: "0 4px 20px hsl(328,76%,50%,0.35)" }}
                     onClick={() => setIsOpen(false)}
                   >
@@ -222,7 +221,6 @@ const Navbar = () => {
                     El Massa Tour & Travel · 2026
                   </p>
                 </motion.div>
-
               </div>
             </motion.div>
           </>

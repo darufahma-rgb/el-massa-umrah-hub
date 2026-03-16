@@ -144,7 +144,7 @@ const Index = () => {
             initial={{ opacity: 0, y: 28 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.08 }}
-            className="font-display font-black leading-[0.86] tracking-tight mb-4 sm:mb-5"
+            className="font-display font-black leading-[1.05] tracking-tight mb-4 sm:mb-5"
             style={{
               fontSize: "clamp(3rem, 12vw, 8rem)",
               color: "rgba(255, 245, 250, 1)",
